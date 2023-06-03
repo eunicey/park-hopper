@@ -34,3 +34,6 @@ class Activity(models.Model):
 
   def __str__(self):
     return self.description
+  
+  class Meta:
+    verbose_name_plural = 'activities'

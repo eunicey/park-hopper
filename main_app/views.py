@@ -10,3 +10,7 @@ def about(request):
 def park_index(request):
   parks = Park.objects.all()
   return render(request, 'parks/index.html', { 'parks': parks })
+
+def park_detail(request, park_id):
+  park = Park.objects.get(id=park_id)
+  return render(request, 'parks/detail.html', {'park': park})

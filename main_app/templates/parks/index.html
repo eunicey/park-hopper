@@ -12,28 +12,32 @@
 {% block content %}
 
 <section class="page-header">
-  <h1>Cat List</h1>
-  <img src="{% static 'images/cool-cat.svg' %}" alt="A cool cat" />
+  <h1>Park List</h1>
+  <img src="{% static 'images/placeholder.jpg' %}" alt="" />
 </section>
 
 <section class="card-container">
-  {% for cat in cats %}
+  {% for park in parks %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img 
-            src="{% static 'images/sk8r-boi-cat.svg' %}" 
-            alt="A skater boy cat"
-          >
+      <a href="/cats/{{ cat.id }}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img 
+              src="{% static 'images/placeholder.jpg' %}" 
+              alt=""
+            >
+          </div>
+          <h2 class="card-title">{{ park.name }}</h2>
+          {% if park.activity_set.all.count %}
+            <h3>{{ park.activity_set.all.count }}
+              {% if park.activity_set.all.count == 1 %} activity {% else %} activities {% endif %}
+            </h3>
+          {% endif %}
+          {% if park.year_visited %}
+            <p>Visited {{ park.year_visited }}</p>
+          {% endif %}
         </div>
-        <h2 class="card-title">{{ cat.name }}</h2>
-        {% if cat.age > 0 %}
-          <p>A {{ cat.age }} year old {{ cat.breed }}</p>
-        {% else %}
-          <p>A {{ cat.breed }} kitten.</p>
-        {% endif %}
-        <p><small>{{ cat.description }}</small></p>
-      </div>
+      </a>
     </div>
   {% endfor %}
 </section>

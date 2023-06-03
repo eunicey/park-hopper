@@ -99,6 +99,9 @@ nav li {
   max-width: 500px;
 }
 
+.header-logo-container img {
+  height: 30px;
+}
 .page-header {
   display: flex;
   align-items: center;
