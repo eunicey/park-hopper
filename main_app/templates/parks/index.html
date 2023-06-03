@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/parks/park-index.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>Cat List</h1>
+  <img src="{% static 'images/cool-cat.svg' %}" alt="A cool cat" />
+</section>
+
+<section class="card-container">
+  {% for cat in cats %}
+    <div class="card">
+      <div class="card-content">
+        <div class="card-img-container">
+          <img 
+            src="{% static 'images/sk8r-boi-cat.svg' %}" 
+            alt="A skater boy cat"
+          >
+        </div>
+        <h2 class="card-title">{{ cat.name }}</h2>
+        {% if cat.age > 0 %}
+          <p>A {{ cat.age }} year old {{ cat.breed }}</p>
+        {% else %}
+          <p>A {{ cat.breed }} kitten.</p>
+        {% endif %}
+        <p><small>{{ cat.description }}</small></p>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
