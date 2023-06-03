@@ -19,7 +19,7 @@
 <section class="card-container">
   {% for park in parks %}
     <div class="card">
-      <a href="/cats/{{ cat.id }}">
+      <a href="{% url 'park-detail' park.id %}">
         <div class="card-content">
           <div class="card-img-container">
             <img 
