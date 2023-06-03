@@ -27,7 +27,7 @@
               alt=""
             >
           </div>
-          <h2 class="card-title">{{ park.name }}</h2>
+          <h2 class="card-title">{{ park.name }}, {{ park.state}} </h2>
           {% if park.activity_set.all.count %}
             <h3>{{ park.activity_set.all.count }}
               {% if park.activity_set.all.count == 1 %} activity {% else %} activities {% endif %}

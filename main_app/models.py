@@ -20,6 +20,9 @@ class Park(models.Model):
   
   def get_absolute_url(self):
     return reverse('park-detail', kwargs={'park_id': self.id})
+  
+  class Meta:
+    ordering = ['-year_visited']
 
 class Activity(models.Model):
   type = models.CharField(
