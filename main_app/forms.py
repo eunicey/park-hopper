@@ -4,4 +4,4 @@ from .models import Activity
 class ActivityForm(ModelForm):
   class Meta:
     model = Activity
-    fields = '__all__'
+    fields = ['type', 'description', 'comments']

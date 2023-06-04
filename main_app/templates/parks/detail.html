@@ -58,6 +58,7 @@
 
     <h3>Add an Activity</h3>
     <form
+      action="{% url 'add-activity' park.id %}"
       method="post" 
       class="subsection-content"
 			autocomplete="off"
