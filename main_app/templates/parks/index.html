@@ -22,9 +22,9 @@
       <a href="{% url 'park-detail' park.id %}">
         <div class="card-content">
           <div class="card-img-container">
-            {% if park.photo.url %}
+            {% if park.parkphoto.url %}
               <img 
-                src="{{park.photo.url}}" 
+                src="{{park.parkphoto.url}}" 
                 alt="A photo of {{park.name}}"
                 class="usr-img"
               >

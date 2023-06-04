@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Park, Photo
+from .models import Park, ParkPhoto, ActivityPhoto
 from .forms import ActivityForm
 
 import uuid
@@ -76,7 +76,7 @@ def signup(request):
   context = {'form': form, 'error_message': error_message}
   return render(request, 'signup.html', context)
 
-def add_photo(request, park_id):
+def add_park_photo(request, park_id):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
     s3 = boto3.client('s3')
@@ -85,11 +85,29 @@ def add_photo(request, park_id):
     try:
       s3.upload_fileobj(photo_file, BUCKET, key)
       url = f"{S3_BASE_URL}{BUCKET}/{key}"
-      photo = Photo(url=url, park_id=park_id)
-      park_photo = Photo.objects.filter(park_id=park_id)
+      photo = ParkPhoto(url=url, park_id=park_id)
+      park_photo = ParkPhoto.objects.filter(park_id=park_id)
       if park_photo.first():
         park_photo.first().delete()
       photo.save()
     except Exception as err:
       print('An error occurred uploading file to S3: %s' % err)
   return redirect('park-detail', park_id=park_id)
+
+# def add_activity_photo(request, activity_id, park_id):
+#   photo_file = request.FILES.get('photo-file', None)
+#   if photo_file:
+#     s3 = boto3.client('s3')
+#     key = uuid.uuid4().hex + photo_file.name[photo_file.name.rfind('.'):]
+
+#     try:
+#       s3.upload_fileobj(photo_file, BUCKET, key)
+#       url = f"{S3_BASE_URL}{BUCKET}/{key}"
+#       photo = ActivityPhoto(url=url, activity_id=activity_id)
+#       activity_photo = ActivityPhoto.objects.filter(activity_id=activity_id)
+#       if activity_photo.first():
+#         activity_photo.first().delete()
+#       photo.save()
+#     except Exception as err:
+#       print('An error occurred uploading file to S3: %s' % err)
+#   return redirect('park-detail', park_id=park_id)

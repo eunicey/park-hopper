@@ -42,9 +42,16 @@ class Activity(models.Model):
   class Meta:
     verbose_name_plural = 'activities'
 
-class Photo(models.Model):
+class ParkPhoto(models.Model):
   url = models.CharField(max_length=250)
   park = models.OneToOneField(Park, on_delete=models.CASCADE)
 
   def __str__(self):
     return f"Photo for park_id: {self.park_id} @{self.url}"
+
+class ActivityPhoto(models.Model):
+  url = models.CharField(max_length=250)
+  activity = models.OneToOneField(Activity, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"Photo for activity_id: {self.activity_id} @{self.url}"
