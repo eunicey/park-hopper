@@ -20,4 +20,11 @@ def park_detail(request, park_id):
 class ParkCreate(CreateView):
   model = Park
   fields = '__all__'
-  # success_url = '/parks/'
+
+class ParkUpdate(UpdateView):
+  model = Park
+  fields = '__all__'
+
+class ParkDelete(DeleteView):
+  model = Park
+  success_url = '/parks/'
