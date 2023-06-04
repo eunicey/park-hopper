@@ -14,10 +14,18 @@
 <section class="park-container">
 
   <div class="park-img">
-    <img 
-      src="{% static 'images/placeholder.jpg' %}" 
-      alt=""
-    >
+    {% if park.photo.url %}
+      <img 
+        src="{{park.photo.url}}" 
+        alt="A photo of {{park.name}}"
+        class="usr-img"
+      >
+    {% else %}
+      <img 
+        src="{% static 'images/placeholder.jpg' %}" 
+        alt=""
+      >
+    {% endif %}
   </div>
 
   <div class="park-details">
@@ -29,8 +37,23 @@
       <a href="{% url 'park-update' park.id %}" class="btn warn">Edit</a>
       <a href="{% url 'park-delete' park.id %}" class="btn danger">Delete</a>
     </div>
-  </div>
 
+    <h3>Change {{ park.name }}'s photo</h3>
+    <p id="file-name"></p>
+    <form 
+      action="{% url 'add-photo' park.id %}"
+      enctype="multipart/form-data"
+      method="POST"
+    >
+      {% csrf_token %}
+      <label class="btn secondary">
+        Choose photo
+        <input type="file" name="photo-file" id="file-input">
+      </label>
+      <button type="submit" class="btn submit">Upload Photo</button>
+    </form>
+
+  </div>
 </section>
 
 <div class="activities-container">
