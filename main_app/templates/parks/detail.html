@@ -12,12 +12,14 @@
 {% block content %}
 
 <section class="park-container">
+
   <div class="park-img">
     <img 
       src="{% static 'images/placeholder.jpg' %}" 
       alt=""
     >
   </div>
+
   <div class="park-details">
     <h1>{{park.name}}, {{park.state}}</h1>
     <h3>Highlights: {{park.highlights}}</h3>
@@ -31,4 +33,39 @@
 
 </section>
 
+<div class="activities-container">
+  <section class="activities">
+
+    <div class="subsection-title">
+      <h2>Activities</h2>
+      <img 
+        src="{% static 'placeholder.jpg' %}" 
+        alt=""
+      />
+    </div>
+
+    <table>
+      <tbody>
+        {% for activity in park.activity_set.all %}
+          <tr>
+            <td>{{activity.get_type_display}}</td>
+            <td>{{activity.description}}</td>
+            <td>{{activity.comments}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h3>Add an Activity</h3>
+    <form
+      method="post" 
+      class="subsection-content"
+			autocomplete="off"
+    >
+      {% csrf_token %}
+      {{ activity_form.as_p }}
+      <button type="submit" class="btn submit">Add Activity</button>
+    </form>
+  </section>
+</div>
 {% endblock %}
