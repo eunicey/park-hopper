@@ -8,6 +8,7 @@ urlpatterns = [
 
   path('parks/<int:park_id>/', views.park_detail, name='park-detail'),
   path('parks/<int:park_id>/add-activity/', views.add_activity, name='add-activity'),
+  path('parks/<int:park_id>/add-photo/', views.add_photo, name='add-photo'),
 
   path('parks/create/', views.ParkCreate.as_view(), name='park-create'),
   path('parks/<int:pk>/update/', views.ParkUpdate.as_view(), name='park-update'),

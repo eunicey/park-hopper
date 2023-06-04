@@ -15,7 +15,7 @@ class Park(models.Model):
   year_visited = models.IntegerField('If visited, what year', blank = True, null = True)
   highlights = models.TextField(max_length = 250, blank = True, null = True)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
-  
+
   def __str__(self):
     return self.name
   
@@ -41,3 +41,10 @@ class Activity(models.Model):
   
   class Meta:
     verbose_name_plural = 'activities'
+
+class Photo(models.Model):
+  url = models.CharField(max_length=250)
+  park = models.OneToOneField(Park, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return f"Photo for park_id: {self.park_id} @{self.url}"
