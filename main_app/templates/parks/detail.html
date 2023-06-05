@@ -30,13 +30,19 @@
   </div>
 
   <div class="park-details">
-    <h1>{{park.name}}, {{park.state}}</h1>
-    <h3>Highlights: {{park.highlights}}</h3>
-    <h3>Visited in {{park.year_visited}}</h3>
+    <div class="park-text">
+      <h1>{{park.name}}, {{park.state}}</h1>
+      <p class="highlights">{{park.highlights}}</p>
+      <p class="visited">visited in {{park.year_visited}}</p>
+    </div>
 
     <div class="park-actions">
-      <a href="{% url 'park-update' park.id %}" class="btn warn">Edit</a>
-      <a href="{% url 'park-delete' park.id %}" class="btn danger">Delete</a>
+      <a href="{% url 'park-update' park.id %}" class="link edit"> Edit 
+        <i class="fa-solid fa-pen-to-square"></i>
+      </a>
+      <a href="{% url 'park-delete' park.id %}" class="link delete">Delete
+        <i class="fa-solid fa-trash"></i>
+      </a>
     </div>
 
     {% comment %} <h3>Change {{ park.name }}'s photo</h3>
@@ -53,88 +59,69 @@
       </label>
       <button type="submit" class="btn submit">Upload Photo</button>
     </form> {% endcomment %}
-
   </div>
 </section>
 
-<div class="activities-container">
-  <section class="activities">
+<section class="activities-container">
 
-    <div class="subsection-title">
-      <h2>Activities</h2>
-      <img 
-        src="{% static 'placeholder.jpg' %}" 
-        alt=""
-      />
-    </div>
+  <h2>Activities</h2>
 
-    {% comment %} <table>
-      <tbody>
-        {% for activity in park.activity_set.all %}
-          <tr>
-            <td>{{activity.get_type_display}}</td>
-            <td>{{activity.description}}</td>
-            <td>{{activity.comments}}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table> {% endcomment %}
+  <div class="card-container">
+    {% for activity in park.activity_set.all %}
 
-    <div class="temp">
-      {% for activity in park.activity_set.all %}
-        <p>{{activity.get_type_display}}</p>
-        <p>{{activity.description}}</p>
-        <p>{{activity.comments}}</p>
+      <div class="card">
 
-        {% if activity.photo.url %}
-          <img 
-            src="{{activity.photo.url}}" 
-            alt="A photo of {{activity.description}}"
-            class="usr-img"
-          >
-        {% else %}
-          <img 
-            src="{% static 'images/placeholder.jpg' %}" 
-            alt=""
-          >
-        {% endif %}
+        <div class="card-img-container">
+          {% if activity.photo.url %}
+            <img 
+              src="{{activity.photo.url}}" 
+              alt="A photo of {{activity.description}}"
+              class="usr-img"
+            >
+          {% else %}
+            <img 
+              src="{% static 'images/placeholder.jpg' %}" 
+              alt=""
+            >
+          {% endif %}
+        </div>
 
-        {% comment %} <p id="file-name"></p>
-        <form 
-          action="{% url 'add-photo' park.id activity.id %}"
-          enctype="multipart/form-data"
-          method="POST"
-        >
-          {% csrf_token %}
-          <label class="btn secondary">
-            Choose photo
-            <input type="file" name="photo-file" id="file-input">
-          </label>
-          <button type="submit" class="btn submit">Upload Photo</button>
-        </form> {% endcomment %}
-      {% endfor %}
-    </div>
+        <div class="card-text-container">
+          <div>
+            <p class="type">{{activity.get_type_display}}</p>
+            <p class="description">{{activity.description}}</p>
+          </div>
+          <p class="comments">{{activity.comments}}</p>
+        </div>
 
-    <h3>Add an Activity</h3>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="form-container">
+    <h2>Add an Activity</h2>
     <form
       action="{% url 'add-activity' park.id %}"
       method="post" 
-      class="subsection-content"
-			autocomplete="off"
+      autocomplete="off"
       enctype="multipart/form-data"
     >
       {% csrf_token %}
-      {{ activity_form.as_p }}
-
-      <p id="file-name"></p>
-      <label class="btn secondary">
-        Choose photo
-        <input type="file" name="photo-file" id="file-input">
-      </label>
-      {% comment %} <button type="submit" class="btn submit">Upload Photo</button> {% endcomment %}
-
+      <table>
+        {{ activity_form.as_table }}
+      </table>
+      
+      <div class="photo-picker">
+        <label class="btn secondary">
+          Choose photo
+          <input type="file" name="photo-file" id="file-input">
+        </label>
+        <p id="file-name"></p>
+        {% comment %} <button type="submit" class="btn submit">Upload Photo</button> {% endcomment %}
+      </div>
       <button type="submit" class="btn submit">Add Activity</button>
     </form>
-  </section>
-</div>
+  </div>
+  
+</section>
 {% endblock %}

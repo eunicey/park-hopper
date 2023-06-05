@@ -27,11 +27,9 @@ body {
   /* background-color: #202124; */
   background-color: #353535;
 
-  /* --nav-bg: rgba(104, 197, 248, .7); */
-  --nav-bg-ff: rgb(60, 110, 113, .7);
-  /* --nav-bg-ff: rgba(104, 197, 248, .9); */
+  --nav-bg: rgb(60, 110, 113, .7);
   --nav-bg-ff: rgb(60, 110, 113, .9);
-  --borders: rgb(36, 116, 248) solid 2px;
+  --nav-bg-ff: rgba(45, 83, 85, 0.9);
 
   --text-color: white;
   --link-hover-color: #f8cf68;
@@ -42,7 +40,8 @@ body {
   --danger: rgb(220, 20, 30);
   --secondary: rgb(57, 57, 57);
 
-  /* --card-box-shadow: 5px 5px 6px -1px #AAA; */
+  --borders: rgb(60, 110, 113, .7) solid 2px;
+  --card-box-shadow: 5px 5px 6px -1px #AAA; 
   --card-border-radius: 6px;
 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 
@@ -57,28 +56,43 @@ body {
 }
 
 header {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  align-items: center;
+  z-index: 1;
+
   width: 100%;
   background-color: var(--nav-bg-ff);
   /* border-bottom: var(--borders); */
 }
 
+nav,
+.header-logo-container {
+  margin: 10px 0;
+  padding: 0 15px;
+}
+
 nav {
-  margin: 10px;
+  margin-left: auto;
+  /* display: flex;
+  justify-content: center; */
 }
 
 nav > ul {
-  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+
   list-style: none;
+  margin: 0;
   padding: 0;
 }
 
-main {
-  width: 100%;
-  padding: 0 10px;
-}
-
-h2 {
-  font-size: var(--font-xl);
+nav li {
+  padding: 10px 10px;
 }
 
 nav a, .header-logo-container a {
@@ -92,17 +106,6 @@ nav a:hover, .header-logo-container a:hover {
   color: var(--link-hover-color)
 }
 
-nav ul {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-nav li {
-  padding: 5px 10px;
-}
-
 /* .header-logo-container {
   margin: auto;
   padding: 10px 20px 0;
@@ -113,11 +116,33 @@ nav li {
   height: 30px;
 } */
 
+main {
+  width: 100%;
+  /* padding: 0 10px; */
+  min-height: calc(100vh - 50px);
+  color: var(--text-color);
+}
+/* 
+h1 {
+  font-size: var(--font-xxl);
+}
+
+h2 {
+  font-size: var(--font-xl);
+} */
+
 .page-header {
   display: flex;
   align-items: center;
   margin: 20px;
+  margin-left: 100px;
   color: var(--text-color);
+}
+
+.page-header h1 {
+  /* font-size: var(--font-xxl); */
+  margin: 0;
+  font-size: var(--font-xtreme);
 }
 
 .btn {
@@ -153,30 +178,57 @@ nav li {
   border-color: var(--warn);
 }
 
+.link {
+  font-size: var(--font-l);
+  padding: 8px 16px;
+  text-decoration: none;
+    /* border-radius: 6px; */
+  /* border-width: 2px; */
+  /* border-style: solid; */
+  /* background-color: var(--button-bg); */
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  margin-right: 10px;
+}
+
+.edit {
+  color: var(--warn);
+  border-color: var(--warn);
+}
+
+.delete {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
 .danger {
   color: var(--danger);
   border-color: var(--danger);
 }
 
-.page-header h1 {
-  font-size: var(--font-xxl);
-  margin: 0;
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  header {
+    background: var(--nav-bg-ff);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
 }
 
-.page-header img {
+/* .page-header img {
   height: 40px;
   margin-left:15px;
 }
 
 .page-header img:first-of-type {
   margin-left: 20px;
-}
+} */
 
-.page-content {
+/* .page-content {
   font-size: var(--font-reg);
-}
+} */
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   header {
     position: sticky;
     display: flex;
@@ -197,10 +249,6 @@ nav li {
     padding: 0 15px;
   }
 
-  .header-logo-container {
-    padding-top: 3px;
-  }
-
   nav {
     margin-left: auto;
     display: flex;
@@ -211,21 +259,8 @@ nav li {
     flex-wrap: nowrap;
   }
 
-  .header-logo-container {
-    width: 213px;
-  }
-
   .page-header h1 {
     font-size: var(--font-xtreme);
-  }
-  
-  .page-header img {
-    height: 50px;
-    margin-left:20px;
-  }
-  
-  .page-header img:first-of-type {
-    margin-left: 25px;
   }
 
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
@@ -235,7 +270,7 @@ nav li {
       backdrop-filter: blur(3px);
     }
   }
-}
+} */
 
 /* @media only screen and (min-width: 1024px) {
   main {
