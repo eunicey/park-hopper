@@ -1,17 +1,18 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.views.generic import ListView, DetailView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
 
 from .models import Park, Photo
 from .forms import ActivityForm
 
 import uuid
 import boto3
+import requests
 
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 BUCKET = 'park-hopper-2023'
@@ -21,6 +22,25 @@ class Home(LoginView):
 
 def about(request):
   return render(request, 'about.html')
+
+def park_api(request):
+  res = requests.get('https://developer.nps.gov/api/v1/parks?q=%22National%20Park%22&api_key=DUURkH3ztXkcEgB3aYFydtxJyyTtgt7GPFPr3reT&limit=200')
+  data = res.json()
+
+  park_data = list(filter(lambda park: park.get('designation') == "National Park", data["data"]))
+
+  def keep_items(pair):
+    wanted_keys = ['fullName', 'parkCode', 'states', 'images']
+    key, value = pair
+    if key in wanted_keys:
+      return True
+    else:
+      return False
+  
+  clean_park_data = [dict(filter(keep_items, park.items())) for park in park_data]
+  # for park in data["data"]:
+  #   print(park["fullName"])
+  return render(request, 'temp.html', {'data': clean_park_data})
 
 @login_required
 def park_index(request):
@@ -36,6 +56,7 @@ def park_detail(request, park_id):
     'activity_form': activity_form,
   })
 
+@login_required
 def add_photo(request, park_id, activity_id):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:

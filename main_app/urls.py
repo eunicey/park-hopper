@@ -15,4 +15,5 @@ urlpatterns = [
   path('parks/<int:pk>/delete/', views.ParkDelete.as_view(), name='park-delete'),
 
   path('accounts/signup/', views.signup, name='signup'),
+  path('temp/', views.park_api, name='park-api'),
 ]
