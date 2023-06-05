@@ -7,6 +7,7 @@
   type="text/css" 
   href="{% static 'css/parks/park-detail.css' %}"
 />
+<script defer src="{% static 'js/park-detail.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -14,18 +15,18 @@
 <section class="park-container">
 
   <div class="park-img">
-    {% if park.parkphoto.url %}
+    {% comment %} {% if park.parkphoto.url %}
       <img 
         src="{{park.parkphoto.url}}" 
         alt="A photo of {{park.name}}"
         class="usr-img"
       >
-    {% else %}
+    {% else %} {% endcomment %}
       <img 
         src="{% static 'images/placeholder.jpg' %}" 
         alt=""
       >
-    {% endif %}
+    {% comment %} {% endif %} {% endcomment %}
   </div>
 
   <div class="park-details">
@@ -38,7 +39,7 @@
       <a href="{% url 'park-delete' park.id %}" class="btn danger">Delete</a>
     </div>
 
-    <h3>Change {{ park.name }}'s photo</h3>
+    {% comment %} <h3>Change {{ park.name }}'s photo</h3>
     <p id="file-name"></p>
     <form 
       action="{% url 'add-park-photo' park.id %}"
@@ -51,7 +52,7 @@
         <input type="file" name="photo-file" id="file-input">
       </label>
       <button type="submit" class="btn submit">Upload Photo</button>
-    </form>
+    </form> {% endcomment %}
 
   </div>
 </section>
@@ -67,7 +68,7 @@
       />
     </div>
 
-    <table>
+    {% comment %} <table>
       <tbody>
         {% for activity in park.activity_set.all %}
           <tr>
@@ -77,7 +78,42 @@
           </tr>
         {% endfor %}
       </tbody>
-    </table>
+    </table> {% endcomment %}
+
+    <div class="temp">
+      {% for activity in park.activity_set.all %}
+        <p>{{activity.get_type_display}}</p>
+        <p>{{activity.description}}</p>
+        <p>{{activity.comments}}</p>
+
+        {% if activity.photo.url %}
+          <img 
+            src="{{activity.photo.url}}" 
+            alt="A photo of {{activity.description}}"
+            class="usr-img"
+          >
+        {% else %}
+          <img 
+            src="{% static 'images/placeholder.jpg' %}" 
+            alt=""
+          >
+        {% endif %}
+
+        {% comment %} <p id="file-name"></p>
+        <form 
+          action="{% url 'add-photo' park.id activity.id %}"
+          enctype="multipart/form-data"
+          method="POST"
+        >
+          {% csrf_token %}
+          <label class="btn secondary">
+            Choose photo
+            <input type="file" name="photo-file" id="file-input">
+          </label>
+          <button type="submit" class="btn submit">Upload Photo</button>
+        </form> {% endcomment %}
+      {% endfor %}
+    </div>
 
     <h3>Add an Activity</h3>
     <form
@@ -85,9 +121,18 @@
       method="post" 
       class="subsection-content"
 			autocomplete="off"
+      enctype="multipart/form-data"
     >
       {% csrf_token %}
       {{ activity_form.as_p }}
+
+      <p id="file-name"></p>
+      <label class="btn secondary">
+        Choose photo
+        <input type="file" name="photo-file" id="file-input">
+      </label>
+      {% comment %} <button type="submit" class="btn submit">Upload Photo</button> {% endcomment %}
+
       <button type="submit" class="btn submit">Add Activity</button>
     </form>
   </section>

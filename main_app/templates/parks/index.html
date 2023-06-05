@@ -22,18 +22,18 @@
       <a href="{% url 'park-detail' park.id %}">
         <div class="card-content">
           <div class="card-img-container">
-            {% if park.parkphoto.url %}
+            {% comment %} {% if park.parkphoto.url %}
               <img 
                 src="{{park.parkphoto.url}}" 
                 alt="A photo of {{park.name}}"
                 class="usr-img"
               >
-            {% else %}
+            {% else %} {% endcomment %}
               <img 
                 src="{% static 'images/placeholder.jpg' %}" 
                 alt=""
               >
-            {% endif %}
+            {% comment %} {% endif %} {% endcomment %}
           </div>
           <h2 class="card-title">{{ park.name }}, {{ park.state}} </h2>
           {% if park.activity_set.all.count %}

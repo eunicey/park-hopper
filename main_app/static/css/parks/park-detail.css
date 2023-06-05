@@ -6,6 +6,10 @@
   justify-content: center;
 }
 
+.temp img {
+  width: 100px;
+}
+
 .park-img {
   width: 75%;
   max-width: 350px;

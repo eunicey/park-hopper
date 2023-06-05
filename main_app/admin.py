@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Park, Activity, ParkPhoto, ActivityPhoto
+from .models import Park, Activity, Photo
 
 admin.site.register(Park)
 admin.site.register(Activity)
-admin.site.register(ParkPhoto)
-admin.site.register(ActivityPhoto)
+admin.site.register(Photo)
