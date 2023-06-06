@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}"/>
+{% endblock %}
 
 {% block content %}
 
-<h1>About the Park Hopper</h1>
-<hr />
+<h1>Park Hopper</h1>
+
 <p class="page-content">
-  I like long romantic walks down the produce aisle. Also, I am currently job seeking!
+  Capture and Plan Your Adventures
 </p>
 
 {% endblock %}

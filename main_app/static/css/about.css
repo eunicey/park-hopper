@@ -1,0 +1,19 @@
+main {
+  background-image: url("https://www.nps.gov/common/uploads/structured_data/68BFC1AC-BF96-629F-89D261D78F181C64.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 8rem;
+}
+
+p {
+  font-size: var( --font-xtreme);
+  margin: 0;
+}
