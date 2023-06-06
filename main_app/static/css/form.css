@@ -23,7 +23,7 @@ main {
 } 
 
 .page-header {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   color: white;
   font-size: var(--font-reg);
 }

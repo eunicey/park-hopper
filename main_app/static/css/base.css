@@ -35,7 +35,7 @@ body {
   --body-text-color: black;
   --help-text-color: rgb(94, 94, 94);
 
-  --link-hover-color: #f8cf68;
+  --link-hover-color: #ff9184;
   --button-bg: rgb(245, 245, 245);
   --button-bg-hover: rgb(226, 226, 226);
   --submit: rgb(26, 128, 0);
@@ -70,18 +70,35 @@ header {
   width: 100%;
   background-color: var(--nav-bg-ff);
   /* border-bottom: var(--borders); */
+  height: 60px;
 }
 
-nav,
 .header-logo-container {
-  margin: 10px 0;
-  padding: 0 15px;
+  height: 100%; 
+  width: 40%;
+  padding: 8px 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.header-logo-container a {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* align-self: flex-start; */
+  /* height: 100%; */
+  width: 100%;
+}
+
+.header-logo-container img {
+  width: auto;
+  padding-right: 20px;
 }
 
 nav {
+  /* margin: 10px 0; */
+  padding: 0 20px;
   margin-left: auto;
-  /* display: flex;
-  justify-content: center; */
 }
 
 nav > ul {
@@ -110,34 +127,11 @@ nav a:hover, .header-logo-container a:hover {
   color: var(--link-hover-color)
 }
 
-/* .header-logo-container {
-  margin: auto;
-  padding: 10px 20px 0;
-  max-width: 500px;
-}
-
-.header-logo-container img {
-  height: 30px;
-} */
-
 main {
   width: 100%;
   /* padding: 0 10px; */
   min-height: calc(100vh - 60px);
   color: var(--body-text-color);
-}
-
-.page-header {
-  /* display: flex;
-  align-items: center; */
-  /* margin: 20px;
-  margin-left: 100px; */
-  /* color: var(--body-text-color); */
-}
-
-.page-header h1 {
-  /* margin: 0;
-  font-size: var(--font-xtreme); */
 }
 
 .btn {
