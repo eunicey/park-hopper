@@ -13,6 +13,7 @@ main {
   margin-top: 50px;
   padding-bottom: 25px;
   background-color: rgb(0, 0, 0, .7);
+  color: white;
 
   display: flex;
   flex-direction: column;
@@ -23,11 +24,15 @@ main {
 
 .page-header {
   margin: 20px 0;
+  color: white;
+  font-size: var(--font-reg);
 }
 
-.form-container h2 {
+.delete-confirm-text {
   font-size: var(--font-xl);
-  margin: 10px 0 30px 0;
+  margin: 0 0 30px 0;
+  padding: 0 20px;
+  text-align: center;
 }
 
 form {

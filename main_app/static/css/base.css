@@ -24,16 +24,16 @@ body {
   align-items: center;
   min-height: 100vh;
 
-  /* background-color: #202124; */
-  --background-color: rgb(24, 24, 24);
-  /* background-color: black; */
+  /* --background-color: rgb(24, 24, 24); */
+  --background-color: rgb(226, 226, 226);
 
   --nav-bg: rgb(60, 110, 113, .7);
   --nav-bg-ff: rgb(60, 110, 113, .9);
   --nav-bg-ff: rgba(45, 83, 85, 0.9);
 
-  --text-color: white;
-  --help-text-color: rgb(187, 187, 187);
+  --text-color-on-dark: white;
+  --body-text-color: black;
+  --help-text-color: rgb(94, 94, 94);
 
   --link-hover-color: #f8cf68;
   --button-bg: rgb(245, 245, 245);
@@ -101,7 +101,7 @@ nav li {
 
 nav a, .header-logo-container a {
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-color-on-dark);
   font-weight: 600;
   font-size: 16px;
 }
@@ -124,20 +124,20 @@ main {
   width: 100%;
   /* padding: 0 10px; */
   min-height: calc(100vh - 60px);
-  color: var(--text-color);
+  color: var(--body-text-color);
 }
 
 .page-header {
-  display: flex;
-  align-items: center;
-  margin: 20px;
-  margin-left: 100px;
-  color: var(--text-color);
+  /* display: flex;
+  align-items: center; */
+  /* margin: 20px;
+  margin-left: 100px; */
+  /* color: var(--body-text-color); */
 }
 
 .page-header h1 {
-  margin: 0;
-  font-size: var(--font-xtreme);
+  /* margin: 0;
+  font-size: var(--font-xtreme); */
 }
 
 .btn {
