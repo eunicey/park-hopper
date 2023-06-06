@@ -1,90 +1,73 @@
 main {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   height: 100%;
+
+  background-image: url("https://www.nps.gov/common/uploads/structured_data/68BFC1AC-BF96-629F-89D261D78F181C64.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-main > section {
+section {
+  height: 100vh;
+  width: 50%;
+  align-self: flex-end;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-color);
+}
+
+div {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  margin: 0 0 20px 0;
   width: 100%;
-  padding: 10px 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.header-logo-container {
-  display: none;
-}
-
-.logo-container {
-  max-width: 375px;
-}
-
-.park-container {
-  width: 80%;
-}
-
-.park-container img {
-  max-width: 100%;
-}
-
-.login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-}
-
-.login h1 {
-  font-size: clamp(3.2rem, 3vw, 4.8rem);
+  /* font-size: clamp(3.2rem, 3vw, 4.8rem); */
+  font-size: var(--font-xtreme);
   margin: 10px 0;
 }
 
-.login > p {
+form {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* border: var(--borders);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-box-shadow); */
+}
+
+form > p {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 14px 0 0px;
+  margin: 15px 0 0px;
 }
 
-.login label {
+form label {
   font-size: var(--font-reg);
   margin-bottom: 6px;
 }
 
-.login input {
+form input {
   font-size: var(--font-l);
   padding: 2px 4px;
 }
 
-.login .btn {
+form .btn {
   align-self: flex-end;
   margin-right: 0;
-  margin-top: 16px;
-}
-
-@media only screen and (min-width: 768px) {
-  main {
-    justify-content: space-around;
-  }
-
-  main > section {
-    width: 40%;
-  }
-
-  .login {
-    border: var(--borders);
-    padding: 20px;
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--card-box-shadow);
-    width: 100%;
-  }
-
-  .logo-container {
-    max-width: 520px;
-  }
+  margin-top: 20px;
 }

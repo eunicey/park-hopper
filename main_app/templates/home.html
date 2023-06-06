@@ -7,36 +7,33 @@
 
 {% block content %}
 
-<section class="logo-container">
-  {% comment %} <div class="park-container">
-    <img src="{% static 'images/placeholder.jpg' %}" alt="" />
-  </div> {% endcomment %}
-  <img 
-    src="{% static 'images/placeholder.jpg' %}" 
-    alt="Text reads: INSERT"
-  />
-</section>
+{% comment %} <img 
+  src="{% static 'images/placeholder.jpg' %}" 
+  alt="Text reads: INSERT"
+/> {% endcomment %}
 
 {% if not user.is_authenticated %}
-  <section>
-
+<section>
+  <div class="form-container">
     <div class="page-header">
-      <h1>Login</h1>
+      <h1>Park Hopper</h1>
     </div>
 
     <form 
       action="{% url 'home' %}" 
       method="post" 
-      class="form-container">
-      
+    >
       {% csrf_token %}
       <table>
-      {{ form.as_p }}
+        {{ form.as_p }}
       </table>
+
       <input type="hidden" name="next" value="{{ next }}">
       <button type="submit" class="btn submit">Login</button>
     </form>
-  </section>
+  </div>
+</section>
+
 {% endif %}
 
 {% endblock %}
