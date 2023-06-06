@@ -25,7 +25,8 @@ body {
   min-height: 100vh;
 
   /* background-color: #202124; */
-  background-color: rgb(45, 45, 45);
+  background-color: rgb(24, 24, 24);
+  /* background-color: black; */
 
   --nav-bg: rgb(60, 110, 113, .7);
   --nav-bg-ff: rgb(60, 110, 113, .9);

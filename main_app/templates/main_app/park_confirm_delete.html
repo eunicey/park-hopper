@@ -1,23 +1,45 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}"/>
+<style>
+  main {
+    {% if park.parkphoto.url %}
+      background-image: url("{{park.parkphoto.url}}")
+    {% else %}
+      background-image: url("{% static 'images/placeholder.jpg' %}")
+    {% endif %}
+  }
+</style>
+{% endblock %}
+
+
 {% block content %}
 
-<div class="page-header">
-  <h1>Delete Park?</h1>
-  <img src="{% static 'placeholder.jpg' %}" alt=""/>
-</div>
-<h2>Are you sure you want to delete {{ park.name }}?</h2>
+<div class="form-container">
 
-<form action="" method="post" class="form">
-  {% csrf_token %}
-  <a 
-    href="{% url 'park-detail' park.id %}" 
-    class="btn secondary"
+  <div class="page-header">
+    <h1>Delete Park?</h1>
+  </div>
+
+  <h2>Are you sure you want to delete {{ park.name }}?</h2>
+
+  <form 
+    action="" 
+    method="post"
+    class="confirm-delete"
   >
-    Cancel
-  </a>
-  <button type="submit" class="btn danger">Yes - Delete!</button>
-</form>
+    {% csrf_token %}
+    <a 
+      href="{% url 'park-detail' park.id %}" 
+      class="btn secondary"
+    >
+      Cancel
+    </a>
+    <button type="submit" class="btn danger">Yes - Delete!</button>
+  </form>
+
+</div>
 
 {% endblock %}
