@@ -7,21 +7,31 @@
 
 {% block content %}
 
-<div class="page-header">
-  {% if park %}
-    <h1>Edit {{park.name}}</h1>
-  {% else %}
-    <h1>Add a Park</h1>
-  {% endif %}
-  <img src="{% static 'images/placeholder.jpg' %}" alt=""/>
-</div>
+<section>
 
-<form action="" method="post" class="form-container">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-  </table>
-  <button type="submit" class="btn submit">Submit!</button>
-</form>
+  <div class="page-header">
+    {% if park %}
+      <h1>Edit {{park.name}}</h1>
+    {% else %}
+      <h1>Add a Park</h1>
+    {% endif %}
+  </div>
+
+  <form 
+    action="" 
+    method="post" 
+    class="form-container"
+    autocomplete="off"
+  >
+
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+
+    <button type="submit" class="btn submit">Submit!</button>
+  </form>
+
+</section>
 
 {% endblock %}

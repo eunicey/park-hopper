@@ -62,7 +62,6 @@ main {
   position: absolute;
   top: 30px;
   right: 0px;
-  /* margin-top: 20px; */
 }
 
 .activities-container {
@@ -195,6 +194,10 @@ th {
   font-size: var(--font-reg);
 }
 
+td {
+  max-width: 60%;
+}
+
 td > * {
   width: 100%;
   padding: 2px 4px;
@@ -233,7 +236,3 @@ td > textarea {
   width: 0.1px;
   height: 0.1px;
 }
-
-/* #file-name {
-  margin-bottom: 10px;
-} */

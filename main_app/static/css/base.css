@@ -25,7 +25,7 @@ body {
   min-height: 100vh;
 
   /* background-color: #202124; */
-  background-color: #353535;
+  background-color: rgb(45, 45, 45);
 
   --nav-bg: rgb(60, 110, 113, .7);
   --nav-bg-ff: rgb(60, 110, 113, .9);
@@ -122,14 +122,6 @@ main {
   min-height: calc(100vh - 50px);
   color: var(--text-color);
 }
-/* 
-h1 {
-  font-size: var(--font-xxl);
-}
-
-h2 {
-  font-size: var(--font-xl);
-} */
 
 .page-header {
   display: flex;
@@ -140,7 +132,6 @@ h2 {
 }
 
 .page-header h1 {
-  /* font-size: var(--font-xxl); */
   margin: 0;
   font-size: var(--font-xtreme);
 }
@@ -182,7 +173,7 @@ h2 {
   font-size: var(--font-l);
   padding: 8px 16px;
   text-decoration: none;
-    /* border-radius: 6px; */
+  /* border-radius: 6px; */
   /* border-width: 2px; */
   /* border-style: solid; */
   /* background-color: var(--button-bg); */
@@ -214,19 +205,6 @@ h2 {
     backdrop-filter: blur(3px);
   }
 }
-
-/* .page-header img {
-  height: 40px;
-  margin-left:15px;
-}
-
-.page-header img:first-of-type {
-  margin-left: 20px;
-} */
-
-/* .page-content {
-  font-size: var(--font-reg);
-} */
 
 /* @media only screen and (min-width: 768px) {
   header {
