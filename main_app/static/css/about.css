@@ -1,19 +1,61 @@
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.intro {
+  width: 100%;
+  height: calc(100vh - 60px);
+
   background-image: url("https://www.nps.gov/common/uploads/structured_data/68BFC1AC-BF96-629F-89D261D78F181C64.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-
+  
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-h1 {
+.header {
   font-size: 8rem;
 }
 
-p {
+.sub-header {
   font-size: var( --font-xtreme);
+  margin: 0;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  width: 60%;
+}
+
+.about > h1 {
+  font-size: var( --font-xtreme);
+  margin: 0 0 40px 0;
+}
+
+.about > p {
+  font-size: var( --font-xl);
+  margin: 0;
+  text-align: center;
+}
+
+footer {
+  width: 100%;
+  padding: 20px 0px;
+  background-color: gray;
+  text-align: center;
+}
+
+footer > p {
+  font-size: var( --font-reg);
   margin: 0;
 }
