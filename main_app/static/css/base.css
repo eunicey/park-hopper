@@ -33,6 +33,8 @@ body {
   --nav-bg-ff: rgba(45, 83, 85, 0.9);
 
   --text-color: white;
+  --help-text-color: rgb(187, 187, 187);
+
   --link-hover-color: #f8cf68;
   --button-bg: rgb(245, 245, 245);
   --button-bg-hover: rgb(226, 226, 226);

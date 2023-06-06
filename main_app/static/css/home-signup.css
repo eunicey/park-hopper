@@ -11,7 +11,7 @@ main {
 }
 
 section {
-  height: 100vh;
+  height: calc(100vh - 60px);
   width: 50%;
   align-self: flex-end;
 
@@ -22,8 +22,8 @@ section {
   background-color: var(--background-color);
 }
 
-div {
-  width: 60%;
+.form-container {
+  width: 70%;
   display: flex;
   flex-direction: column;
 }
@@ -34,11 +34,12 @@ div {
   /* font-size: clamp(3.2rem, 3vw, 4.8rem); */
   font-size: var(--font-xtreme);
   margin: 10px 0;
+  justify-content: center;
 }
 
 form {
   width: 100%;
-  padding: 20px;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,25 +50,73 @@ form {
   box-shadow: var(--card-box-shadow); */
 }
 
-form > p {
+/* form > p {
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 15px 0 0px;
-}
+} */
 
-form label {
+/* form label {
   font-size: var(--font-reg);
   margin-bottom: 6px;
-}
+} */
 
-form input {
+/* form input {
   font-size: var(--font-l);
   padding: 2px 4px;
-}
+} */
 
-form .btn {
+/* form .btn {
   align-self: flex-end;
   margin-right: 0;
   margin-top: 20px;
+} */
+
+table {
+  /* padding: 0 40px; */
+  width: 100%;
+  border-spacing: 0 20px;
+}
+
+/* tr {
+  margin-bottom: 20px;
+} */
+
+th {
+  text-align: left;
+  padding: 6px 0 0 0;
+  font-weight: normal;
+  vertical-align: top;
+  font-size: var(--font-reg);
+
+}
+
+/* td {
+  max-width: 60%;
+} */
+
+td input {
+  width: 100%;
+  padding: 2px 4px;
+  font-size: var(--font-l);
+  margin-bottom: 10px;
+}
+
+.btn {
+  align-self: flex-end;
+  margin: 0;
+  /* margin-right: 40px; */
+}
+
+.helptext {
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  color: var(--help-text-color);
+}
+
+.helptext ul {
+  padding-left: 15px;
+  margin: 15px 0;
 }
