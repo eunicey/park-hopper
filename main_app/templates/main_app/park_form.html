@@ -2,7 +2,23 @@
 {% load static %}
 
 {% block head %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}"/>
+<script defer src="{% static 'js/park-detail.js' %}"></script>
+<style>
+  main {
+    {% if park %}
+      {% if park.parkphoto.url %}
+        background-image: url("{{park.parkphoto.url}}")
+      {% else %}
+        background-image: url("{% static 'images/yosemite-by-rodrigo-soares.jpg' %}")
+      {% endif %}
+    {% else %}
+        background-image: url("{% static 'images/rocky-mountain-by-harold-wainwright.jpg' %}")
+    {% endif %}
+  }
+</style>
+
 {% endblock %}
 
 {% block content %}
@@ -18,9 +34,10 @@
   </div>
 
   <form 
-    action="" 
+    action=""
     method="post" 
     autocomplete="off"
+    enctype="multipart/form-data"
   >
 
     {% csrf_token %}
@@ -28,6 +45,13 @@
       {{ form.as_table }}
     </table>
 
+    <div class="photo-picker">
+      <label class="btn secondary">
+        Choose photo
+        <input type="file" name="photo-file" id="file-input">
+      </label>
+      <p id="file-name"></p>
+    </div>
     <button type="submit" class="btn submit">Submit!</button>
   </form>
 

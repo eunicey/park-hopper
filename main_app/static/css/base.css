@@ -27,8 +27,6 @@ body {
   /* --background-color: rgb(24, 24, 24); */
   --background-color: rgb(230, 230, 230);
 
-  --nav-bg: rgb(60, 110, 113, .7);
-  --nav-bg-ff: rgb(60, 110, 113, .9);
   --nav-bg-ff: rgba(45, 83, 85, 0.9);
 
   --text-color-on-dark: white;

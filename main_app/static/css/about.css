@@ -57,11 +57,12 @@ main {
 footer {
   width: 100%;
   padding: 20px 0px;
-  background-color: gray;
+  background-color: var(--nav-bg-ff);
   text-align: center;
 }
 
 footer > p {
-  font-size: var( --font-reg);
+  font-size: var(--font-reg);
   margin: 0;
+  color: white;
 }

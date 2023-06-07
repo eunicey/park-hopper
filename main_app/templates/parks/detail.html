@@ -15,18 +15,18 @@
 <section class="park-container">
 
   <div class="park-img">
-    {% comment %} {% if park.parkphoto.url %}
+    {% if park.parkphoto.url %}
       <img 
         src="{{park.parkphoto.url}}" 
         alt="A photo of {{park.name}}"
         class="usr-img"
       >
-    {% else %} {% endcomment %}
+    {% else %}
       <img 
         src="{% static 'images/yosemite-by-rodrigo-soares.jpg' %}" 
         alt="Yosemite National Park"
       >
-    {% comment %} {% endif %} {% endcomment %}
+    {% endif %}
   </div>
 
   <div class="park-details">
@@ -76,9 +76,9 @@
       <div class="card">
 
         <div class="card-img-container">
-          {% if activity.photo.url %}
+          {% if activity.activityphoto.url %}
             <img 
-              src="{{activity.photo.url}}" 
+              src="{{activity.activityphoto.url}}" 
               alt="A photo of {{activity.description}}"
               class="usr-img"
             >
