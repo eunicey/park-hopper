@@ -23,8 +23,8 @@
       >
     {% else %} {% endcomment %}
       <img 
-        src="{% static 'images/placeholder.jpg' %}" 
-        alt=""
+        src="{% static 'images/yosemite-by-rodrigo-soares.jpg' %}" 
+        alt="Yosemite National Park"
       >
     {% comment %} {% endif %} {% endcomment %}
   </div>
@@ -83,8 +83,8 @@
               class="usr-img"
             >
           {% else %}
-            <img 
-              src="{% static 'images/placeholder.jpg' %}" 
+            <img
+              src="{% static 'images/activity-'%}{{activity.type}}.jpg" 
               alt=""
             >
           {% endif %}

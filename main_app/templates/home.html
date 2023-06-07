@@ -7,8 +7,24 @@
 
 {% block content %}
 
+<section class="image-section">
+  {% if user.is_authenticated %}
+    <img 
+      src="{% static 'images/teton-by-joshua-earle.jpg' %}"
+      alt="Grand Teton National Park"
+      style="object-position: 50% 20%;"
+    >
+    <h1>Park Hopper</h1>
+  {% else %}
+    <img 
+      src="{% static 'images/arches-by-pedro-lastra.jpg' %}" 
+      alt="Arches National Park"
+    >
+  {% endif %}
+</section>
+
 {% if not user.is_authenticated %}
-<section>
+<section class="form-section">
   <div class="form-container">
     <div class="page-header">
       <h1>Park Hopper</h1>

@@ -2,7 +2,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("https://www.nps.gov/common/uploads/structured_data/68BFC1AC-BF96-629F-89D261D78F181C64.jpg");
+  background-image: url("../images/rocky-mountain-by-harold-wainwright.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }

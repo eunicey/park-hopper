@@ -9,23 +9,26 @@ main {
   width: 100%;
   height: calc(100vh - 60px);
 
-  background-image: url("https://www.nps.gov/common/uploads/structured_data/68BFC1AC-BF96-629F-89D261D78F181C64.jpg");
+  background-image: url("../images/yosemite-by-mick-haupt.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .header {
   font-size: 8rem;
+  color: black;
+  margin: 20vh 0 20px 0;
 }
 
 .sub-header {
-  font-size: var( --font-xtreme);
+  font-size: var(--font-xtreme);
   margin: 0;
+  color: black;
 }
 
 .about {
@@ -38,7 +41,7 @@ main {
 }
 
 .about > h1 {
-  font-size: var( --font-xtreme);
+  font-size: var(--font-xtreme);
   margin: 0 0 40px 0;
   font-weight: 500;
 }
