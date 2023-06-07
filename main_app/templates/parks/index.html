@@ -45,7 +45,11 @@
           </div>
 
           {% if park.year_visited %}
-            <p id="visited"> Visited {{ park.year_visited }}</p>
+            {% comment %} <p id="visited"> Visited {{ park.year_visited }}</p> {% endcomment %}
+            <img id="visited" 
+              src="{% static 'images/goal2.svg' %}" 
+              alt=""
+            >
           {% endif %}
 
         </div>

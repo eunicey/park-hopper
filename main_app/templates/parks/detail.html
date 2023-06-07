@@ -33,7 +33,11 @@
     <div class="park-text">
       <h1>{{park.name}}, {{park.state}}</h1>
       <p class="highlights">{{park.highlights}}</p>
-      <p class="visited">visited in {{park.year_visited}}</p>
+      {% if park.year_visited %}
+        <p class="visit">visited in {{park.year_visited}}</p>
+      {% else %}
+        <p class="visit">Must Visit!</p>
+      {% endif %}
     </div>
 
     <div class="park-actions">

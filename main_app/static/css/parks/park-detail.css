@@ -55,7 +55,7 @@ main {
   font-weight: 300;
 }
 
-.park-details .visited {
+.park-details .visit {
   font-size: var(--font-xl);
   font-weight: 300;
   margin-bottom: 50px;

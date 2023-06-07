@@ -12,7 +12,6 @@ from .forms import ActivityForm
 
 import uuid
 import boto3
-import requests
 
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 BUCKET = 'park-hopper-2023'
@@ -22,25 +21,6 @@ class Home(LoginView):
 
 def about(request):
   return render(request, 'about.html')
-
-def park_api(request):
-  res = requests.get('https://developer.nps.gov/api/v1/parks?q=%22National%20Park%22&api_key=DUURkH3ztXkcEgB3aYFydtxJyyTtgt7GPFPr3reT&limit=200')
-  data = res.json()
-
-  park_data = list(filter(lambda park: park.get('designation') == "National Park", data["data"]))
-
-  def keep_items(pair):
-    wanted_keys = ['fullName', 'parkCode', 'states', 'images']
-    key, value = pair
-    if key in wanted_keys:
-      return True
-    else:
-      return False
-  
-  clean_park_data = [dict(filter(keep_items, park.items())) for park in park_data]
-  # for park in data["data"]:
-  #   print(park["fullName"])
-  return render(request, 'temp.html', {'data': clean_park_data})
 
 @login_required
 def park_index(request):
