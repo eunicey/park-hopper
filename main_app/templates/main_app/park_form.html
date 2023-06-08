@@ -46,13 +46,17 @@
     </table>
 
     <div class="photo-picker">
-      <label class="btn secondary">
-        Choose photo
+      <label class="link-icon">
+        Add photo
+        <img 
+          src="{% static 'icons/add-photo-bright.svg' %}" 
+          alt="Edit Park"
+        >
         <input type="file" name="photo-file" id="file-input">
       </label>
       <p id="file-name"></p>
     </div>
-    <button type="submit" class="btn submit">Save</button>
+    <button type="submit" class="btn submit">Save Park</button>
   </form>
 
 </div>

@@ -12,7 +12,12 @@
 {% block content %}
 
 <section class="page-header">
-  <h1>My National Parks</h1>
+  {% if not parks %}
+    <h1> Welcome {{user.username}}! </h1>
+    <h1>Start by adding a national park to your list!</h1>
+  {% else %}
+    <h1>My National Parks</h1>
+  {% endif %}
 </section>
 
 <section class="card-container">

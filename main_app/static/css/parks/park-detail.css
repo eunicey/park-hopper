@@ -63,8 +63,26 @@ main {
 
 .park-actions {
   position: absolute;
-  top: 30px;
+  top: 40px;
   right: 40px;
+}
+
+.park-actions .link-icon {
+  /* font-size: var(--font-l); */
+  /* padding: 8px 16px; */
+  text-decoration: none;
+  /* border-radius: 6px; */
+  /* border-width: 2px; */
+  /* border-style: solid; */
+  /* background-color: var(--button-bg); */
+  /* font-weight: 600; */
+  cursor: pointer;
+  /* font-family: inherit; */
+  margin-right: 15px;
+}
+
+.link-icon img {
+  width: 30px;
 }
 
 .activities-container {
@@ -191,7 +209,7 @@ form {
   align-items: flex-start;
 }
 
-table {
+table, .photo-picker {
   padding: 0 40px;
   width: 100%;
   border-spacing: 0 20px;
@@ -223,7 +241,14 @@ td > textarea {
 .photo-picker {
   display: flex;
   align-items: center;
-  font-size: var(--font-l);
+  font-size: var(--font-reg);
+  margin-bottom: 20px;
+}
+
+.photo-picker .link-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 #file-name {

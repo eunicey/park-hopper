@@ -41,28 +41,22 @@
     </div>
 
     <div class="park-actions">
-      <a href="{% url 'park-update' park.id %}" class="link edit"> Edit 
-        <i class="fa-solid fa-pen-to-square"></i>
+      <a href="{% url 'park-update' park.id %}" class="link-icon edit"> 
+        <img 
+          src="{% static 'icons/edit.svg' %}" 
+          alt="Edit Park"
+        >
+        {% comment %} Edit Park {% endcomment %}
       </a>
-      <a href="{% url 'park-delete' park.id %}" class="link delete">Delete
-        <i class="fa-solid fa-trash"></i>
+      <a href="{% url 'park-delete' park.id %}" class="link-icon delete">
+        <img 
+          src="{% static 'icons/delete.svg' %}" 
+          alt="Delete Park"
+        >
+        {% comment %} Delete Park {% endcomment %}
+
       </a>
     </div>
-
-    {% comment %} <h3>Change {{ park.name }}'s photo</h3>
-    <p id="file-name"></p>
-    <form 
-      action="{% url 'add-park-photo' park.id %}"
-      enctype="multipart/form-data"
-      method="POST"
-    >
-      {% csrf_token %}
-      <label class="btn secondary">
-        Choose photo
-        <input type="file" name="photo-file" id="file-input">
-      </label>
-      <button type="submit" class="btn submit">Upload Photo</button>
-    </form> {% endcomment %}
   </div>
 </section>
 
@@ -116,12 +110,15 @@
       </table>
       
       <div class="photo-picker">
-        <label class="btn secondary">
-          Choose photo
+        <label class="link-icon">
+          Add photo
+          <img 
+            src="{% static 'icons/add-photo.svg' %}" 
+            alt="Edit Park"
+          >
           <input type="file" name="photo-file" id="file-input">
         </label>
         <p id="file-name"></p>
-        {% comment %} <button type="submit" class="btn submit">Upload Photo</button> {% endcomment %}
       </div>
       <button type="submit" class="btn submit">Add Activity</button>
     </form>

@@ -86,7 +86,20 @@ td > textarea {
   display: flex;
   align-items: center;
   font-size: var(--font-reg);
-  margin-left: 40px;
+  margin: 0 0 20px 40px;
+}
+
+.photo-picker .link-icon {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 35px;
+}
+
+.link-icon img {
+  width: 30px;
+  cursor: pointer;
+  margin-left:10px;
 }
 
 #file-name {

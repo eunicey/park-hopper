@@ -30,16 +30,17 @@ body {
 
   --text-color-on-dark: white;
   --body-text-color: black;
-  --help-text-color: rgb(71, 71, 71);
+  --help-text-color: #474747;
   /* --help-text-color: rgb(234, 234, 234); */
 
   --link-hover-color: #ff9184;
   --button-bg: rgb(245, 245, 245);
   --button-bg-hover: rgb(226, 226, 226);
-  --submit: rgb(26, 128, 0);
-  --warn: rgb(255, 102, 0);
-  --danger: rgb(220, 20, 30);
-  --secondary: rgb(57, 57, 57);
+  --submit: #1a8000;
+  /* --submit: #25bb00; */
+  --warn: #ff6600;
+  --danger: #dc141e;
+  --secondary: rgb(98, 98, 98);
 
   --borders: rgb(60, 110, 113, .7) solid 2px;
   --card-box-shadow: 5px 5px 6px -1px #AAA; 
@@ -141,59 +142,52 @@ main {
   border-width: 2px;
   border-style: solid;
   text-decoration: none;
-  background-color: var(--button-bg);
+  /* background-color: var(--button-bg); */
+  border-color:transparent;
+  color: var(--button-bg);
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
   margin-right: 10px;
 }
 
-.btn:hover {
+/* .btn:hover {
   background-color: var(--button-bg-hover);
+} */
+
+.btn:active {
+  transform: scale(0.95);
 }
 
 .submit {
-  color: var(--submit);
-  border-color: var(--submit);
+  background-color: var(--submit);
+  /* border-color: var(--submit); */
 }
 
 .secondary {
-  color: var(--secondary);
-  border-color: var(--secondary);
+  background-color: var(--secondary);
+  /* border-color: var(--secondary); */
 }
 
 .warn {
-  color: var(--warn);
-  border-color: var(--warn);
-}
-
-.link {
-  font-size: var(--font-l);
-  padding: 8px 16px;
-  text-decoration: none;
-  /* border-radius: 6px; */
-  /* border-width: 2px; */
-  /* border-style: solid; */
-  /* background-color: var(--button-bg); */
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  margin-right: 10px;
+  background-color: var(--warn);
+  /* border-color: var(--warn); */
 }
 
 .edit {
+  /* background-color: var(--warn); */
   color: var(--warn);
-  border-color: var(--warn);
+  /* border-color: var(--warn); */
 }
 
 .delete {
   color: var(--danger);
-  border-color: var(--danger);
+  /* border-color: var(--danger); */
 }
 
 .danger {
-  color: var(--danger);
-  border-color: var(--danger);
+  background-color: var(--danger);
+  /* border-color: var(--danger); */
 }
 
 @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {

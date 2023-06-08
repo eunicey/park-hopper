@@ -4,7 +4,8 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.http import HttpResponseForbidden
 
 from .models import Park, ActivityPhoto, ParkPhoto
 from .forms import ActivityForm
@@ -34,6 +35,10 @@ def park_index(request):
 def park_detail(request, park_id):
   park = Park.objects.get(id=park_id)
   activity_form = ActivityForm()
+
+  if not park.user == request.user:
+    return HttpResponseForbidden('Forbidden!')
+  
   return render(request, 'parks/detail.html', {
     'park': park,
     'activity_form': activity_form,
@@ -100,7 +105,7 @@ class ParkCreate(LoginRequiredMixin, CreateView):
     return super().form_valid(form)
 
 
-class ParkUpdate(LoginRequiredMixin, UpdateView):
+class ParkUpdate(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):
   model = Park
   fields = ['name', 'state', 'year_visited', 'highlights']
 
@@ -108,10 +113,17 @@ class ParkUpdate(LoginRequiredMixin, UpdateView):
     add_park_photo(self.request, self.kwargs['pk'])
     return super().form_valid(form)
   
+  def test_func(self):
+    park = self.get_object()
+    return self.request.user == park.user
 
-class ParkDelete(LoginRequiredMixin, DeleteView):
+class ParkDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
   model = Park
   success_url = '/parks/'
+
+  def test_func(self):
+    park = self.get_object()
+    return self.request.user == park.user
 
 
 def signup(request):

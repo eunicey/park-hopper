@@ -1,8 +1,16 @@
 .page-header {
   margin: 20px;
-  margin-left: 100px;
+  /* margin-left: 100px; */
   font-size: var(--font-xl);
+  text-align: center;
 }
+
+/* .page-header h2 {
+  margin-top: 100px;
+  text-align: center;
+  font-weight: 400;
+} */
+
 .card-container {
   /* padding: 0 30px; */
   display: flex;
@@ -24,6 +32,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
+}
+
+.card-content:active {
+  transform: scale(0.95);
 }
 
 .card-content::after {

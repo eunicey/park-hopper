@@ -129,7 +129,7 @@ th {
   padding: 6px 0 0 0;
   font-weight: normal;
   vertical-align: top;
-  font-size: var(--font-reg);
+  font-size: var(--font-l);
 
 }
 
@@ -162,7 +162,7 @@ td input {
   margin: 15px 0;
 }
 
-.errorlist {
+.errorlist, .red-text {
   list-style: none;
   font-size: var(--font-reg);
   text-align: center;
