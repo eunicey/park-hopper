@@ -15,16 +15,20 @@ import boto3
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 BUCKET = 'park-hopper-2023'
 
+
 class Home(LoginView):
   template_name = 'home.html'
 
+
 def about(request):
   return render(request, 'about.html')
+
 
 @login_required
 def park_index(request):
   parks = Park.objects.filter(user=request.user)
   return render(request, 'parks/index.html', { 'parks': parks })
+
 
 @login_required
 def park_detail(request, park_id):
@@ -34,6 +38,7 @@ def park_detail(request, park_id):
     'park': park,
     'activity_form': activity_form,
   })
+
 
 @login_required
 def add_activity_photo(request, park_id, activity_id):
@@ -53,6 +58,7 @@ def add_activity_photo(request, park_id, activity_id):
     except Exception as err:
       print('An error occurred uploading file to S3: %s' % err)
 
+
 @login_required
 def add_activity(request, park_id):
   form = ActivityForm(request.POST)
@@ -62,6 +68,7 @@ def add_activity(request, park_id):
     new_activity.save()
     add_activity_photo(request, park_id=park_id, activity_id=new_activity.id)
   return redirect('park-detail', park_id=park_id)
+
 
 @login_required
 def add_park_photo(request, park_id):
@@ -81,6 +88,7 @@ def add_park_photo(request, park_id):
     except Exception as err:
       print('An error occurred uploading file to S3: %s' % err)
 
+
 class ParkCreate(LoginRequiredMixin, CreateView):
   model = Park
   fields = ['name', 'state', 'year_visited', 'highlights']
@@ -91,6 +99,7 @@ class ParkCreate(LoginRequiredMixin, CreateView):
     add_park_photo(self.request, new_park.id)
     return super().form_valid(form)
 
+
 class ParkUpdate(LoginRequiredMixin, UpdateView):
   model = Park
   fields = ['name', 'state', 'year_visited', 'highlights']
@@ -99,9 +108,11 @@ class ParkUpdate(LoginRequiredMixin, UpdateView):
     add_park_photo(self.request, self.kwargs['pk'])
     return super().form_valid(form)
   
+
 class ParkDelete(LoginRequiredMixin, DeleteView):
   model = Park
   success_url = '/parks/'
+
 
 def signup(request):
   error_message = ''

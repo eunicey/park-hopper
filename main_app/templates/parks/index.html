@@ -34,25 +34,17 @@
                 alt=""
               >
             {% endif %}
+
+            {% if park.year_visited %}
+              <div class="banner-container">
+                <div class="banner">Visited</div>
+              </div>
+            {% endif %}
           </div>
 
           <div class="card-text-container">
             <h2 class="card-title">{{ park.name }}, {{ park.state}} </h2>
-            {% comment %} {% if park.activity_set.all.count %}
-              <p id="activity">{{ park.activity_set.all.count }}
-                {% if park.activity_set.all.count == 1 %} activity {% else %} activities {% endif %}
-              </p>
-            {% endif %} {% endcomment %}
           </div>
-
-          {% if park.year_visited %}
-            {% comment %} <p id="visited"> Visited {{ park.year_visited }}</p> {% endcomment %}
-            <img id="visited" 
-              src="{% static 'images/goal2.svg' %}" 
-              alt=""
-            >
-          {% endif %}
-
         </div>
       </a>
     </div>

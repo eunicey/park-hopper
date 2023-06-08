@@ -73,6 +73,10 @@ td > textarea {
   margin-right: 40px;
 }
 
+.btn.danger {
+  margin: 0 0 0 40px;
+}
+
 .confirm-delete {
   display: flex;
   flex-direction: row;
