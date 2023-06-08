@@ -3,16 +3,22 @@
 
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/home-signup.css' %}"/>
+<style>
+  {% comment %} main {background-image: url("{% static 'images/bryce-by-martin-podsiad.jpg' %}")} {% endcomment %}
+  main {background-image: url("{% static 'images/arches-by-mattia-bericchia.jpg' %}")}
+  
+</style>
+
 {% endblock %}
 
 {% block content %}
 
-<section class="image-section">
+{% comment %} <section class="image-section">
   <img 
     src="{% static 'images/bryce-by-drew-hays.jpg' %}" 
     alt="Bryce National Park"
   >
-</section>
+</section> {% endcomment %}
 
 <section class="form-section">
   <div class="form-container">

@@ -25,12 +25,13 @@ body {
   min-height: 100vh;
 
   /* --background-color: rgb(24, 24, 24); */
-  --background-color: rgb(230, 230, 230);
+  --background-color: rgb(230, 230, 230, 1);
   --nav-bg-ff: rgba(45, 83, 85, 0.9);
 
   --text-color-on-dark: white;
   --body-text-color: black;
-  --help-text-color: rgb(94, 94, 94);
+  --help-text-color: rgb(71, 71, 71);
+  /* --help-text-color: rgb(234, 234, 234); */
 
   --link-hover-color: #ff9184;
   --button-bg: rgb(245, 245, 245);

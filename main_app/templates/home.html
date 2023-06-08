@@ -2,12 +2,25 @@
 {% load static %}
 
 {% block head %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/home-signup.css' %}"/>
+
+<style>
+  main {
+    {% if user.is_authenticated %}
+      background-image: url("{% static 'images/teton-by-joshua-earle.jpg' %}")
+    {% else %}
+      background-image: url("{% static 'images/bryce-by-alex-povolyashko.jpg' %}")
+    {% endif %}
+  }
+</style>
+
 {% endblock %}
+
 
 {% block content %}
 
-<section class="image-section">
+{% comment %} <section class="image-section">
   {% if user.is_authenticated %}
     <img 
       src="{% static 'images/teton-by-joshua-earle.jpg' %}"
@@ -21,7 +34,7 @@
       alt="Arches National Park"
     >
   {% endif %}
-</section>
+</section> {% endcomment %}
 
 {% if not user.is_authenticated %}
 <section class="form-section">
@@ -45,6 +58,9 @@
   </div>
 </section>
 
+{% else %}
+  <h1>Park Hopper</h1>
 {% endif %}
+
 
 {% endblock %}

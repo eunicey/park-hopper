@@ -1,4 +1,4 @@
-<img src= "./main_app/static/images/splash.png">
+<img src= "./main_app/static/images/splash.jpg">
 <br />
 
 # Park Hopper
@@ -15,7 +15,8 @@ Welcome to Park Hopper, an app to capture and plan your national park adventures
 
 
 ## Attributions
-- Photos by [Annie Spratt](https://unsplash.com/@anniespratt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/4-4WPFLVhAY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+- National park photos by [Mattia Bericchia](https://unsplash.com/@mattiabericchia), [Alex Povolyashko](https://unsplash.com/@alex_povolyashko), [Harold Wainwright](https://unsplash.com/@haroldwainwright), [Joshua Earle](https://unsplash.com/@huper), [Mick Haupt](https://unsplash.com/@rocinante_11), and [Matthias Mullie](https://unsplash.com/@matthiasmullie)
+- Activity photos by [Elijah Austin](https://unsplash.com/@elijahjaustin), [Dino Reichmuth](https://unsplash.com/@dinoreichmuth), [Alex Azabache](https://unsplash.com/@alexazabache), and [Cristofer Maximilian](https://unsplash.com/@cristofer)
 - SVGs from [svgrepo](https://www.svgrepo.com/)
 <br />
 

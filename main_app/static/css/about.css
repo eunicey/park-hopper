@@ -21,14 +21,14 @@ main {
 
 .header {
   font-size: 8rem;
-  color: black;
+  color: white;
   margin: 20vh 0 20px 0;
 }
 
 .sub-header {
   font-size: var(--font-xtreme);
   margin: 0;
-  color: black;
+  color: white;
 }
 
 .about {
