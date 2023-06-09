@@ -21,6 +21,7 @@
 
 {% endblock %}
 
+
 {% block content %}
 
 <div class="form-container">
@@ -41,24 +42,23 @@
   >
 
     {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
+    <table> {{ form.as_table }} </table>
 
     <div class="photo-picker">
       <label class="link-icon">
         Add photo
         <img 
-          src="{% static 'icons/add-photo-bright.svg' %}" 
-          alt="Edit Park"
+          src="{% static 'icons/add-photo.svg' %}" 
+          alt="add park photo"
         >
         <input type="file" name="photo-file" id="file-input">
       </label>
       <p id="file-name"></p>
     </div>
-    <button type="submit" class="btn submit">Save Park</button>
-  </form>
 
+    <button type="submit" class="btn submit">Save Park</button>
+
+  </form>
 </div>
 
 {% endblock %}

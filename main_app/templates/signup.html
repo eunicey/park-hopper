@@ -2,26 +2,20 @@
 {% load static %}
 
 {% block head %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'css/home-signup.css' %}"/>
 <style>
-  {% comment %} main {background-image: url("{% static 'images/bryce-by-martin-podsiad.jpg' %}")} {% endcomment %}
   main {background-image: url("{% static 'images/arches-by-mattia-bericchia.jpg' %}")}
-  
 </style>
 
 {% endblock %}
 
-{% block content %}
 
-{% comment %} <section class="image-section">
-  <img 
-    src="{% static 'images/bryce-by-drew-hays.jpg' %}" 
-    alt="Bryce National Park"
-  >
-</section> {% endcomment %}
+{% block content %}
 
 <section class="form-section">
   <div class="form-container">
+    
     <div class="page-header">
       <h1>Sign Up</h1>
     </div>
@@ -37,9 +31,7 @@
     >
 
       {% csrf_token %}
-      <table>
-        {{ form.as_table }}
-      </table>
+      <table> {{ form.as_table }} </table>
 
       <button type="submit" class="btn submit">Submit</button>
     </form>

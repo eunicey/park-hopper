@@ -20,43 +20,26 @@
 
 {% block content %}
 
-{% comment %} <section class="image-section">
-  {% if user.is_authenticated %}
-    <img 
-      src="{% static 'images/teton-by-joshua-earle.jpg' %}"
-      alt="Grand Teton National Park"
-      style="object-position: 50% 20%;"
-    >
-    <h1>Park Hopper</h1>
-  {% else %}
-    <img 
-      src="{% static 'images/arches-by-pedro-lastra.jpg' %}" 
-      alt="Arches National Park"
-    >
-  {% endif %}
-</section> {% endcomment %}
-
 {% if not user.is_authenticated %}
-<section class="form-section">
-  <div class="form-container">
-    <div class="page-header">
-      <h1>Park Hopper</h1>
+  <section class="form-section">
+    <div class="form-container">
+
+      <div class="page-header">
+        <h1>Park Hopper</h1>
+      </div>
+
+      <form 
+        action="{% url 'home' %}" 
+        method="post"
+      >
+        {% csrf_token %}
+        <table> {{ form.as_table }} </table>
+
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit" class="btn submit">Login</button>
+      </form>
     </div>
-
-    <form 
-      action="{% url 'home' %}" 
-      method="post"
-    >
-      {% csrf_token %}
-      <table>
-        {{ form.as_table }}
-      </table>
-
-      <input type="hidden" name="next" value="{{ next }}">
-      <button type="submit" class="btn submit">Login</button>
-    </form>
-  </div>
-</section>
+  </section>
 
 {% else %}
   <h1>Park Hopper</h1>

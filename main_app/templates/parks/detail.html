@@ -2,13 +2,10 @@
 {% load static %}
 
 {% block head %}
-<link 
-  rel="stylesheet" 
-  type="text/css" 
-  href="{% static 'css/parks/park-detail.css' %}"
-/>
+<link rel="stylesheet" type="text/css" href="{% static 'css/parks/park-detail.css' %}"/>
 <script defer src="{% static 'js/park-detail.js' %}"></script>
 {% endblock %}
+
 
 {% block content %}
 
@@ -18,13 +15,12 @@
     {% if park.parkphoto.url %}
       <img 
         src="{{park.parkphoto.url}}" 
-        alt="A photo of {{park.name}}"
-        class="usr-img"
+        alt="a photo of {{park.name}}"
       >
     {% else %}
       <img 
         src="{% static 'images/zion-by-matthias-mullie.jpg' %}" 
-        alt="Yosemite National Park"
+        alt="a placeholder image of Zion National Park"
       >
     {% endif %}
   </div>
@@ -33,6 +29,7 @@
     <div class="park-text">
       <h1>{{park.name}}, {{park.state}}</h1>
       <p class="highlights">{{park.highlights}}</p>
+
       {% if park.year_visited %}
         <p class="visit">visited in {{park.year_visited}}</p>
       {% else %}
@@ -44,42 +41,36 @@
       <a href="{% url 'park-update' park.id %}" class="link-icon edit"> 
         <img 
           src="{% static 'icons/edit.svg' %}" 
-          alt="Edit Park"
+          alt="edit park"
         >
-        {% comment %} Edit Park {% endcomment %}
       </a>
       <a href="{% url 'park-delete' park.id %}" class="link-icon delete">
         <img 
           src="{% static 'icons/delete.svg' %}" 
-          alt="Delete Park"
+          alt="delete park"
         >
-        {% comment %} Delete Park {% endcomment %}
-
       </a>
     </div>
   </div>
 </section>
 
 <section class="activities-container">
-
   <h2>Activities</h2>
 
   <div class="card-container">
     {% for activity in park.activity_set.all %}
 
       <div class="card">
-
         <div class="card-img-container">
           {% if activity.activityphoto.url %}
             <img 
               src="{{activity.activityphoto.url}}" 
-              alt="A photo of {{activity.description}}"
-              class="usr-img"
+              alt="a photo of {{activity.description}}"
             >
           {% else %}
             <img
               src="{% static 'images/activity-'%}{{activity.type}}.jpg" 
-              alt=""
+              alt="a placeholder photo of a {{activity.type}}"
             >
           {% endif %}
         </div>
@@ -91,8 +82,8 @@
           </div>
           <p class="comments">{{activity.comments}}</p>
         </div>
-
       </div>
+
     {% endfor %}
   </div>
 
@@ -105,21 +96,20 @@
       enctype="multipart/form-data"
     >
       {% csrf_token %}
-      <table>
-        {{ activity_form.as_table }}
-      </table>
+      <table> {{ activity_form.as_table }}</table>
       
       <div class="photo-picker">
         <label class="link-icon">
           Add photo
           <img 
             src="{% static 'icons/add-photo.svg' %}" 
-            alt="Edit Park"
+            alt="add photo of activity"
           >
           <input type="file" name="photo-file" id="file-input">
         </label>
         <p id="file-name"></p>
       </div>
+
       <button type="submit" class="btn submit">Add Activity</button>
     </form>
   </div>

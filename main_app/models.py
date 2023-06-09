@@ -6,8 +6,9 @@ TYPES = (
   ('T', 'Trail'),
   ('S', 'Scenic Drive'),
   ('C', 'Camp'),
-  ('V', 'Viewpoints'),
+  ('V', 'Viewpoint'),
 )
+
 
 class Park(models.Model):
   name = models.CharField(max_length = 100)
@@ -24,6 +25,7 @@ class Park(models.Model):
   
   class Meta:
     ordering = ['-year_visited']
+
 
 class Activity(models.Model):
   type = models.CharField(
@@ -42,12 +44,14 @@ class Activity(models.Model):
   class Meta:
     verbose_name_plural = 'activities'
 
+
 class ActivityPhoto(models.Model):
   url = models.CharField(max_length=250)
   activity = models.OneToOneField(Activity, on_delete=models.CASCADE)
 
   def __str__(self):
     return f"Photo for activity_id: {self.activity_id} @{self.url}"
+
 
 class ParkPhoto(models.Model):
   url = models.CharField(max_length=250)

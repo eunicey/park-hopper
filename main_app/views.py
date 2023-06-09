@@ -117,6 +117,7 @@ class ParkUpdate(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):
     park = self.get_object()
     return self.request.user == park.user
 
+
 class ParkDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
   model = Park
   success_url = '/parks/'
@@ -140,4 +141,3 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'signup.html', context)
-

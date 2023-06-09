@@ -23,11 +23,6 @@ main {
   object-position: 50% 25%;
 }
 
-/* .usr-img {
-  width: 100%;
-  border-radius: var(--card-border-radius);
-} */
-
 .park-details {
   display: flex;
   flex-direction: column;
@@ -68,16 +63,8 @@ main {
 }
 
 .park-actions .link-icon {
-  /* font-size: var(--font-l); */
-  /* padding: 8px 16px; */
   text-decoration: none;
-  /* border-radius: 6px; */
-  /* border-width: 2px; */
-  /* border-style: solid; */
-  /* background-color: var(--button-bg); */
-  /* font-weight: 600; */
   cursor: pointer;
-  /* font-family: inherit; */
   margin-right: 15px;
 }
 
@@ -98,7 +85,6 @@ main {
   font-size: var(--font-xxl);
   margin: 20px 0;
   font-weight: 500;
-
 }
 
 .card-container {
@@ -115,11 +101,9 @@ main {
   align-items: center;
   grid-template-areas: "details image";
   border:#e7f2fb solid 1px;
-
 }
 
 .card:nth-child(odd) {
-
   grid-template-areas: "image details";
 }
 
@@ -186,14 +170,12 @@ main {
 }
 
 .form-container {
-  /* border: var(--borders); */
-  border-radius: var(--card-border-radius);
-  box-shadow: var(--card-box-shadow);
-
   margin: 80px 0;
   padding: 15px;
   min-width: 360px;
-  background-color:white;
+  background-color: rgb(230, 230, 230, .5);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-box-shadow);
 }
 
 .form-container h2 {
@@ -259,12 +241,6 @@ td > textarea {
   align-self: flex-end;
   margin-right: 40px;
 }
-
-/* .form-container > form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-} */
 
 #file-input {
   overflow: hidden;
