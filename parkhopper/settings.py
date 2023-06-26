@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'parkhopper.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('BIT_IO_DATABASE_NAME'),
-        'USER': env('BIT_IO_USER'),
-        'PASSWORD': env('BIT_IO_PASSWORD'),
-        'HOST': 'db.bit.io',
+        'NAME': env('SUPABASE_DATABASE_NAME'),
+        'USER': env('SUPABASE_USER'),
+        'PASSWORD': env('SUPABASE_PASSWORD'),
+        'HOST': env('SUPABASE_HOST'),
         'PORT': '5432',
     }
 }
