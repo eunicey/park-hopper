@@ -27,7 +27,7 @@
 
   <div class="park-details">
     <div class="park-text">
-      <h1>{{park.name}}, {{park.state}}</h1>
+      <h1>{{park.get_name_display}}</h1>
       <p class="highlights">{{park.highlights}}</p>
 
       {% if park.year_visited %}

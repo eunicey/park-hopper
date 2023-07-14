@@ -1,0 +1,14 @@
+
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<ol>
+  {% for park in data %}
+    <li>{{ park.fullName}}</li>
+  {% endfor %} 
+</ol>
+
+{% endblock %} 

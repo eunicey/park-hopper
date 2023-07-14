@@ -37,6 +37,7 @@
             <li><a href="{% url 'park-create' %}">Add a Park</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% comment %} <li><a href="{% url 'park-api' %}">API</a></li> {% endcomment %}
           {% else %}
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'home' %}">Login</a></li>

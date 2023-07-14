@@ -11,6 +11,17 @@ Welcome to Park Hopper, an app to capture and plan your national park adventures
 - [Visit ParkHopper](https://parkhopper.fly.dev/)
 - [Trello planning materials](https://trello.com/b/O3dyjfy0/park-hopper)
 - [GitHub repo](https://github.com/eunicey/park-hopper)
+
+- To Run a local instance:
+1. Open Docker
+2. > docker compose up
+3. go to http://localhost:3000/
+
+- To update model:
+1. Under Docker in Activity Bar in VS, right click into park-hopper container to attach shell
+2. > python3 manage.py makemigrations
+3. > python3 manage.py migrate
+
 <br />
 
 
@@ -24,7 +35,7 @@ Welcome to Park Hopper, an app to capture and plan your national park adventures
 - Django
 - Python
 - psycopg2
-- bit.io
+- supabase
 - AWS S3
 - Boto3
 - Green Unicorn

@@ -12,6 +12,7 @@ from .forms import ActivityForm
 
 import uuid
 import boto3
+import requests
 
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 BUCKET = 'park-hopper-2023'
@@ -24,6 +25,22 @@ class Home(LoginView):
 def about(request):
   return render(request, 'about.html')
 
+def get_parks():
+  res = requests.get('https://developer.nps.gov/api/v1/parks?q=%22National%20Park%22&api_key=DUURkH3ztXkcEgB3aYFydtxJyyTtgt7GPFPr3reT&limit=200')
+  data = res.json()
+
+  # filter out everything that is not a national park
+  park_data = list(filter(lambda park: park.get('designation') == "National Park", data["data"]))
+
+  # create tupes of park code, park name and park code, park iage url
+  parkNames, parkImages = ([] for i in range(2))
+  for idx, park in enumerate(park_data):
+    parkNames.append((park['parkCode'], park['fullName']+', '+park['states']))
+    parkImages.append((park['parkCode'], park['images'][0]['url']))
+  parkNames = tuple(parkNames)
+  parkImages = tuple(parkImages)
+  
+  return parkNames, parkImages
 
 @login_required
 def park_index(request):
@@ -76,7 +93,7 @@ def add_activity(request, park_id):
 
 
 @login_required
-def add_park_photo(request, park_id):
+def add_park_photo(request, park_id, park_name):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
     s3 = boto3.client('s3')
@@ -94,16 +111,35 @@ def add_park_photo(request, park_id):
       print('An error occurred uploading file to S3: %s' % err)
 
 
+# class ParkCreate(LoginRequiredMixin, CreateView):
+#   model = Park
+#   fields = ['name', 'state', 'year_visited', 'highlights']
+  
+#   def form_valid(self, form):
+#     form.instance.user = self.request.user
+#     new_park = form.save()
+#     add_park_photo(self.request, new_park.id)
+#     return super().form_valid(form)
+
 class ParkCreate(LoginRequiredMixin, CreateView):
   model = Park
-  fields = ['name', 'state', 'year_visited', 'highlights']
+  fields = ['name', 'year_visited', 'highlights', 'url']
+
+  # def get_form(self):
+  #   form = super().get_form()
+  #   parkNames, parkImages = get_parks()
+  #   print(parkImages)
+  #   form.fields['name'].choices = parkNames
+  #   return form
   
   def form_valid(self, form):
     form.instance.user = self.request.user
     new_park = form.save()
-    add_park_photo(self.request, new_park.id)
-    return super().form_valid(form)
+    print(new_park.name)
 
+    # 
+    # add_park_photo(self.request, new_park.id, new_park.name)
+    return super().form_valid(form)
 
 class ParkUpdate(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):
   model = Park

@@ -44,7 +44,7 @@
     {% csrf_token %}
     <table> {{ form.as_table }} </table>
 
-    <div class="photo-picker">
+    {% comment %} <div class="photo-picker">
       <label class="link-icon">
         Add photo
         <img 
@@ -54,7 +54,7 @@
         <input type="file" name="photo-file" id="file-input">
       </label>
       <p id="file-name"></p>
-    </div>
+    </div> {% endcomment %}
 
     <button type="submit" class="btn submit">Save Park</button>
 
