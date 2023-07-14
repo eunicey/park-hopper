@@ -19,7 +19,7 @@ class Park(models.Model):
   # state = models.CharField('State (abbreviation)', max_length = 2)
   year_visited = models.IntegerField('If visited, what year', blank = True, null = True)
   highlights = models.TextField(max_length = 250, blank = True, null = True)
-  url = models.CharField(max_length=250)
+  url = models.CharField(max_length=250, blank = True, null = True)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):

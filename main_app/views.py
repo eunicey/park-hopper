@@ -93,7 +93,7 @@ def add_activity(request, park_id):
 
 
 @login_required
-def add_park_photo(request, park_id, park_name):
+def add_park_photo(request, park_id):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
     s3 = boto3.client('s3')
@@ -143,7 +143,7 @@ class ParkCreate(LoginRequiredMixin, CreateView):
 
 class ParkUpdate(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):
   model = Park
-  fields = ['name', 'state', 'year_visited', 'highlights']
+  fields = ['name', 'year_visited', 'highlights', 'url']
 
   def form_valid(self, form):
     add_park_photo(self.request, self.kwargs['pk'])
