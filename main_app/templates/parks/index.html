@@ -23,17 +23,14 @@
       <a href="{% url 'park-detail' park.id %}">
         <div class="card-content">
           <div class="card-img-container">
-            {% if park.parkphoto.url %}
-              <img 
+            <img
+              {% if park.parkphoto.url %}
                 src="{{park.parkphoto.url}}" 
-                alt="a photo of {{park.name}}"
-              >
-            {% else %}
-              <img 
-                src="{% static 'images/zion-sm-by-matthias-mullie.jpg' %}" 
-                alt="a placeholder image of Zion National Park"
-              >
-            {% endif %}
+              {% else %}
+                src="{{park.url}}"
+              {% endif %}
+              alt="a photo of {{park.get_name_display}}"
+            >
 
             {% if park.year_visited %}
               <div class="banner-container">

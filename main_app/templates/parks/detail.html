@@ -10,19 +10,15 @@
 {% block content %}
 
 <section class="park-container">
-
   <div class="park-img">
-    {% if park.parkphoto.url %}
-      <img 
+    <img
+      {% if park.parkphoto.url %}
         src="{{park.parkphoto.url}}" 
-        alt="a photo of {{park.name}}"
-      >
-    {% else %}
-      <img 
-        src="{% static 'images/zion-by-matthias-mullie.jpg' %}" 
-        alt="a placeholder image of Zion National Park"
-      >
-    {% endif %}
+      {% else %}
+        src="{{park.url}}"
+      {% endif %}
+      alt="a photo of {{park.get_name_display}}"
+    >
   </div>
 
   <div class="park-details">

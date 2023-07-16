@@ -9,7 +9,7 @@ from django.http import HttpResponseForbidden
 
 from .models import Park, ActivityPhoto, ParkPhoto
 from .forms import ActivityForm
-
+from .park_info import PARK_IMAGES
 import uuid
 import boto3
 import requests
@@ -123,7 +123,7 @@ def add_park_photo(request, park_id):
 
 class ParkCreate(LoginRequiredMixin, CreateView):
   model = Park
-  fields = ['name', 'year_visited', 'highlights', 'url']
+  fields = ['name', 'year_visited', 'highlights']
 
   # def get_form(self):
   #   form = super().get_form()
@@ -135,15 +135,13 @@ class ParkCreate(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     new_park = form.save()
-    print(new_park.name)
-
-    # 
+    new_park.url = [park_code[1] for park_code in PARK_IMAGES if new_park.name in park_code][0]
     # add_park_photo(self.request, new_park.id, new_park.name)
     return super().form_valid(form)
 
 class ParkUpdate(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):
   model = Park
-  fields = ['name', 'year_visited', 'highlights', 'url']
+  fields = ['name', 'year_visited', 'highlights']
 
   def form_valid(self, form):
     add_park_photo(self.request, self.kwargs['pk'])
