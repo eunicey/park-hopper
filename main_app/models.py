@@ -16,7 +16,6 @@ class Park(models.Model):
     choices=PARK_NAMES, 
     default = PARK_NAMES[0][0]
   )
-  # state = models.CharField('State (abbreviation)', max_length = 2)
   year_visited = models.IntegerField('If visited, what year', blank = True, null = True)
   highlights = models.TextField(max_length = 250, blank = True, null = True)
   url = models.CharField(max_length=250, blank = True, null = True)

@@ -6,13 +6,16 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseForbidden
+from django.conf import settings
 
 from .models import Park, ActivityPhoto, ParkPhoto
 from .forms import ActivityForm
 from .park_info import PARK_IMAGES
+
 import uuid
 import boto3
 import requests
+from requests.auth import HTTPBasicAuth
 
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 BUCKET = 'park-hopper-2023'
@@ -25,8 +28,10 @@ class Home(LoginView):
 def about(request):
   return render(request, 'about.html')
 
-def get_parks():
-  res = requests.get('https://developer.nps.gov/api/v1/parks?q=%22National%20Park%22&api_key=DUURkH3ztXkcEgB3aYFydtxJyyTtgt7GPFPr3reT&limit=200')
+def get_parks(request):
+  endpoint = 'https://developer.nps.gov/api/v1/parks?q=%22National%20Park%22&limit=200'
+  PARAMS = {'api_key':settings.NPS_API_KEY}
+  res = requests.get(endpoint,params=PARAMS)
   data = res.json()
 
   # filter out everything that is not a national park
@@ -39,14 +44,17 @@ def get_parks():
     parkImages.append((park['parkCode'], park['images'][0]['url']))
   parkNames = tuple(parkNames)
   parkImages = tuple(parkImages)
-  
+  file1 = open('park_info_new.py', 'w')
+  file1.write(parkNames)
+  file1.close()
+  print(parkNames)
   return parkNames, parkImages
 
 @login_required
 def park_index(request):
+  parkNames, parkImages = get_parks(request)
   parks = Park.objects.filter(user=request.user)
   return render(request, 'parks/index.html', { 'parks': parks })
-
 
 @login_required
 def park_detail(request, park_id):
@@ -124,7 +132,6 @@ def add_park_photo(request, park_id):
 class ParkCreate(LoginRequiredMixin, CreateView):
   model = Park
   fields = ['name', 'year_visited', 'highlights']
-
   # def get_form(self):
   #   form = super().get_form()
   #   parkNames, parkImages = get_parks()
@@ -136,7 +143,6 @@ class ParkCreate(LoginRequiredMixin, CreateView):
     form.instance.user = self.request.user
     new_park = form.save()
     new_park.url = [park_code[1] for park_code in PARK_IMAGES if new_park.name in park_code][0]
-    # add_park_photo(self.request, new_park.id, new_park.name)
     return super().form_valid(form)
 
 class ParkUpdate(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/parks/park-index.css' %}"/>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+  {% if not parks %}
+    <h1> Welcome {{user.username}}! </h1>
+    <h1>Start by adding a national park to your list!</h1>
+  {% else %}
+    <h1>My National Parks</h1>
+  {% endif %}
+</section>
+
+<section class="card-container">
+  {% for park in parks %}
+    <div class="card">
+      <a href="{% url 'park-detail' park.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              {% if park.parkphoto.url %}
+                src="{{park.parkphoto.url}}" 
+              {% else %}
+                src="{{park.url}}"
+              {% endif %}
+              alt="a photo of {{park.get_name_display}}"
+            >
+
+            {% if park.year_visited %}
+              <div class="banner-container">
+                <div class="banner">Visited</div>
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="card-text-container">
+            <h2 class="card-title">{{ park.get_name_display }}</h2>
+          </div>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
