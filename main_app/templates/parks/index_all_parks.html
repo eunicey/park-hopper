@@ -9,41 +9,28 @@
 {% block content %}
 
 <section class="page-header">
-  {% if not parks %}
-    <h1> Welcome {{user.username}}! </h1>
-    <h1>Start by adding a national park to your list!</h1>
-  {% else %}
-    <h1>All National Parks</h1>
-  {% endif %}
+  <h1>All National Parks</h1>
 </section>
 
 <section class="card-container">
-  {% for park in parks %}
+  {% for nps in national_parks %}
     <div class="card">
-      {% comment %} <a href="{% url 'park-detail' park.id %}"> {% endcomment %}
+      {% comment %} {% if park.code in favorites %} {% endcomment %}
+      {% comment %} <a href="{% url 'park-detail' nps.id %}"> {% endcomment %}
+      <a href="{% url 'park-create' nps.id %}">
         <div class="card-content">
           <div class="card-img-container">
             <img
-              {% comment %} {% if park.parkphoto.url %}
-                src="{{park.parkphoto.url}}" 
-              {% else %} {% endcomment %}
-                src="{{park.img_url}}"
-              {% comment %} {% endif %} {% endcomment %}
-              alt="a photo of {{park.name}}"
+              src="{{nps.img_url}}"
+              alt="a photo of {{nps.name}}"
             >
-
-            {% comment %} {% if park.year_visited %}
-              <div class="banner-container">
-                <div class="banner">Visited</div>
-              </div>
-            {% endif %} {% endcomment %}
           </div>
 
           <div class="card-text-container">
-            <h2 class="card-title">{{ park.name }}</h2>
+            <h2 class="card-title">{{ nps.name }}</h2>
           </div>
         </div>
-      {% comment %} </a> {% endcomment %}
+      </a>
     </div>
   {% endfor %}
 </section>

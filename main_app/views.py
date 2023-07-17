@@ -48,7 +48,8 @@ def get_parks(request):
       park_data.save()
   
   all_parks = NationalPark.objects.all()
-  return render(request,'parks/index_all_parks.html', {'parks': all_parks})
+  favorites = Park.objects.filter(user=request.user)
+  return render(request,'parks/index_all_parks.html', {'national_parks': all_parks, 'park': favorites})
 
   # # create tupes of park code, park name and park code, park iage url
   # parkNames, parkImages = ([] for i in range(2))
@@ -146,11 +147,18 @@ class ParkCreate(LoginRequiredMixin, CreateView):
   #   print(parkImages)
   #   form.fields['name'].choices = parkNames
   #   return form
-  
+
+  def get_form(self):
+    form = super().get_form()
+    park = NationalPark.objects.get(id=self.kwargs['pk'])
+    form.fields['name'].initial = park.code
+    return form
+
   def form_valid(self, form):
     form.instance.user = self.request.user
+    form.instance.national_park = NationalPark.objects.get(id=self.kwargs['pk'])
     new_park = form.save()
-    new_park.url = [park_code[1] for park_code in PARK_IMAGES if new_park.name in park_code][0]
+    # new_park.url = [park_code[1] for park_code in PARK_IMAGES if new_park.name in park_code][0]
     return super().form_valid(form)
 
 class ParkUpdate(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):
