@@ -13,37 +13,37 @@
     <h1> Welcome {{user.username}}! </h1>
     <h1>Start by adding a national park to your list!</h1>
   {% else %}
-    <h1>My National Parks</h1>
+    <h1>All National Parks</h1>
   {% endif %}
 </section>
 
 <section class="card-container">
   {% for park in parks %}
     <div class="card">
-      <a href="{% url 'park-detail' park.id %}">
+      {% comment %} <a href="{% url 'park-detail' park.id %}"> {% endcomment %}
         <div class="card-content">
           <div class="card-img-container">
             <img
-              {% if park.parkphoto.url %}
+              {% comment %} {% if park.parkphoto.url %}
                 src="{{park.parkphoto.url}}" 
-              {% else %}
-                src="{{park.url}}"
-              {% endif %}
-              alt="a photo of {{park.get_name_display}}"
+              {% else %} {% endcomment %}
+                src="{{park.img_url}}"
+              {% comment %} {% endif %} {% endcomment %}
+              alt="a photo of {{park.name}}"
             >
 
-            {% if park.year_visited %}
+            {% comment %} {% if park.year_visited %}
               <div class="banner-container">
                 <div class="banner">Visited</div>
               </div>
-            {% endif %}
+            {% endif %} {% endcomment %}
           </div>
 
           <div class="card-text-container">
-            <h2 class="card-title">{{ park.get_name_display }}</h2>
+            <h2 class="card-title">{{ park.name }}</h2>
           </div>
         </div>
-      </a>
+      {% comment %} </a> {% endcomment %}
     </div>
   {% endfor %}
 </section>

@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseForbidden
 from django.conf import settings
 
-from .models import Park, ActivityPhoto, ParkPhoto
+from .models import Park, ActivityPhoto, ParkPhoto, NationalPark
 from .forms import ActivityForm
 from .park_info import PARK_IMAGES
 
@@ -35,20 +35,28 @@ def get_parks(request):
   data = res.json()
 
   # filter out everything that is not a national park
-  park_data = list(filter(lambda park: park.get('designation') == "National Park", data["data"]))
+  only_parks = list(filter(lambda park: park.get('designation') == "National Park", data["data"]))
+  NationalPark.objects.all().delete()
 
-  # create tupes of park code, park name and park code, park iage url
-  parkNames, parkImages = ([] for i in range(2))
-  for idx, park in enumerate(park_data):
-    parkNames.append((park['parkCode'], park['fullName']+', '+park['states']))
-    parkImages.append((park['parkCode'], park['images'][0]['url']))
-  parkNames = tuple(parkNames)
-  parkImages = tuple(parkImages)
-  file1 = open('park_info_new.py', 'w')
-  file1.write(parkNames)
-  file1.close()
-  print(parkNames)
-  return parkNames, parkImages
+  for park in only_parks:
+    park_data = NationalPark(
+      name = park['fullName'],
+      code = park['parkCode'],
+      state = park['states'],
+      img_url = park['images'][0]['url'],
+    )
+    park_data.save()
+    all_parks = NationalPark.objects.all()
+  return render(request,'parks/index_all_parks.html', {'parks': all_parks})
+
+  # # create tupes of park code, park name and park code, park iage url
+  # parkNames, parkImages = ([] for i in range(2))
+  # for park in park_data:
+  #   parkNames.append((park['parkCode'], park['fullName']+', '+park['states']))
+  #   parkImages.append((park['parkCode'], park['images'][0]['url']))
+  # parkNames = tuple(parkNames)
+  # parkImages = tuple(parkImages)
+  # return parkNames, parkImages
 
 @login_required
 def park_index(request):

@@ -10,6 +10,18 @@ TYPES = (
   ('V', 'Viewpoint'),
 )
 
+class NationalPark(models.Model):
+  name = models.CharField(max_length=100)
+  code = models.CharField(max_length=10)
+  state = models.CharField(max_length=20)
+  img_url = models.CharField(max_length=250)
+
+  def __str__(self):
+    return self.name
+  
+  class Meta:
+    ordering = ['name']
+
 class Park(models.Model):
   name = models.CharField(
     max_length=100, 
