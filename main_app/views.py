@@ -15,7 +15,7 @@ from .park_info import PARK_IMAGES
 import uuid
 import boto3
 import requests
-from requests.auth import HTTPBasicAuth
+
 
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 BUCKET = 'park-hopper-2023'
@@ -36,17 +36,18 @@ def get_parks(request):
 
   # filter out everything that is not a national park
   only_parks = list(filter(lambda park: park.get('designation') == "National Park", data["data"]))
-  NationalPark.objects.all().delete()
 
   for park in only_parks:
-    park_data = NationalPark(
-      name = park['fullName'],
-      code = park['parkCode'],
-      state = park['states'],
-      img_url = park['images'][0]['url'],
-    )
-    park_data.save()
-    all_parks = NationalPark.objects.all()
+    if not NationalPark.objects.filter(code=park['parkCode']):
+      park_data = NationalPark(
+        name = park['fullName'],
+        code = park['parkCode'],
+        state = park['states'],
+        img_url = park['images'][0]['url'],
+      )
+      park_data.save()
+  
+  all_parks = NationalPark.objects.all()
   return render(request,'parks/index_all_parks.html', {'parks': all_parks})
 
   # # create tupes of park code, park name and park code, park iage url
@@ -60,7 +61,6 @@ def get_parks(request):
 
 @login_required
 def park_index(request):
-  parkNames, parkImages = get_parks(request)
   parks = Park.objects.filter(user=request.user)
   return render(request, 'parks/index.html', { 'parks': parks })
 

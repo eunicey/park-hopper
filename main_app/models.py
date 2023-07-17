@@ -32,6 +32,7 @@ class Park(models.Model):
   highlights = models.TextField(max_length = 250, blank = True, null = True)
   url = models.CharField(max_length=250, blank = True, null = True)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
+  national_park_id = models.ForeignKey(NationalPark, on_delete=models.CASCADE)
 
   def __str__(self):
     return self.name
