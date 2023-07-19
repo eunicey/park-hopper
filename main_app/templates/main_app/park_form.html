@@ -44,19 +44,17 @@
     {% csrf_token %}
     <table> {{ form.as_table }} </table>
 
-    {% if park %}
-      <div class="photo-picker">
-        <label class="link-icon">
-          Add your own image:
-          <img 
-            src="{% static 'icons/add-photo.svg' %}" 
-            alt="add park photo"
-          >
-          <input type="file" name="photo-file" id="file-input">
-        </label>
-        <p id="file-name"></p>
-      </div> 
-    {% endif %}
+    <div class="photo-picker">
+      <label class="link-icon">
+        Change park photo:
+        <img 
+          src="{% static 'icons/add-photo.svg' %}" 
+          alt="add park photo"
+        >
+        <input type="file" name="photo-file" id="file-input">
+      </label>
+      <p id="file-name"></p>
+    </div> 
 
     <button type="submit" class="btn submit">Save Park</button>
 

@@ -10,7 +10,6 @@ from django.conf import settings
 
 from .models import Park, ActivityPhoto, ParkPhoto, NationalPark
 from .forms import ActivityForm
-from .park_info import PARK_IMAGES
 
 import uuid
 import boto3
@@ -28,7 +27,7 @@ class Home(LoginView):
 def about(request):
   return render(request, 'about.html')
 
-def get_parks(request):
+def park_index(request):
   endpoint = 'https://developer.nps.gov/api/v1/parks?q=%22National%20Park%22&limit=200'
   PARAMS = {'api_key':settings.NPS_API_KEY}
   res = requests.get(endpoint,params=PARAMS)
@@ -51,7 +50,7 @@ def get_parks(request):
 
 
 @login_required
-def park_index(request):
+def favorite_index(request):
   parks = Park.objects.filter(user=request.user)
   return render(request, 'parks/index.html', { 'parks': parks })
 
@@ -131,7 +130,8 @@ class ParkCreate(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     form.instance.national_park = NationalPark.objects.get(id=self.kwargs['pk'])
-    form.save()
+    new_park = form.save()
+    add_park_photo(self.request, new_park.id)
     return super().form_valid(form)
 
 
