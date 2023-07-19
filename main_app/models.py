@@ -9,7 +9,7 @@ TYPES = (
   ('V', 'Viewpoint'),
 )
 
-class NationalPark(models.Model):
+class NPS(models.Model):
   name = models.CharField(max_length=100)
   code = models.CharField(max_length=10)
   state = models.CharField(max_length=20)
@@ -26,7 +26,7 @@ class Park(models.Model):
   year_visited = models.IntegerField('If visited, what year', blank = True, null = True)
   highlights = models.TextField(max_length = 250, blank = True, null = True)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
-  national_park = models.ForeignKey(NationalPark, on_delete=models.CASCADE)
+  nps = models.ForeignKey(NPS, on_delete=models.CASCADE)
 
   def __str__(self):
     return self.name

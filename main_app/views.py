@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseForbidden
 from django.conf import settings
 
-from .models import Park, ActivityPhoto, ParkPhoto, NationalPark
+from .models import Park, ActivityPhoto, ParkPhoto, NPS
 from .forms import ActivityForm
 
 import uuid
@@ -34,8 +34,8 @@ def get_parks(request):
   only_parks = list(filter(lambda park: park.get('designation') == "National Park", data["data"]))
 
   for park in only_parks:
-    if not NationalPark.objects.filter(code=park['parkCode']):
-      park_data = NationalPark(
+    if not NPS.objects.filter(code=park['parkCode']):
+      park_data = NPS(
         name = park['fullName'],
         code = park['parkCode'],
         state = park['states'],
@@ -43,7 +43,7 @@ def get_parks(request):
       )
       park_data.save()
   
-  all_parks = NationalPark.objects.all()
+  all_parks = NPS.objects.all()
   return render(request,'index.html', {'nps_all': all_parks})
 
 
@@ -122,14 +122,14 @@ class ParkCreate(LoginRequiredMixin, CreateView):
 
   def get_form(self):
     form = super().get_form()
-    park = NationalPark.objects.get(id=self.kwargs['pk'])
+    park = NPS.objects.get(id=self.kwargs['pk'])
     form.fields['name'].initial = park.name
     form.fields['name'].disabled = True
     return form
 
   def form_valid(self, form):
     form.instance.user = self.request.user
-    form.instance.national_park = NationalPark.objects.get(id=self.kwargs['pk'])
+    form.instance.nps = NPS.objects.get(id=self.kwargs['pk'])
     new_park = form.save()
     add_park_photo(self.request, new_park.id)
     return super().form_valid(form)

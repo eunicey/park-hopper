@@ -12,14 +12,14 @@
 }
 
 .card {
-  max-width: 100%;
+  width: 450px;
   height: 300px;
   margin: 20px;
   position:relative;
 }
 
 .card-content {
-  max-width: 100%;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -46,7 +46,7 @@
 
 .card-img-container, .card-img-container img {
   height: 100%;
-  max-width: 100%;
+  width: 100%;
 }
 
 .card-text-container {

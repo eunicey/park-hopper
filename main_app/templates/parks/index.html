@@ -13,7 +13,7 @@
     <h1> Welcome {{user.username}}! </h1>
     <h1>Start by adding a national park to your list!</h1>
   {% else %}
-    <h1>My National Parks</h1>
+    <h1>Favorite Parks</h1>
   {% endif %}
 </section>
 
@@ -27,7 +27,7 @@
               {% if park.parkphoto.url %}
                 src="{{park.parkphoto.url}}" 
               {% else %}
-                src="{{park.national_park.img_url}}"
+                src="{{park.nps.img_url}}"
               {% endif %}
               alt="a photo of {{park.name}}"
             >
