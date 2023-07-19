@@ -27,7 +27,7 @@
               {% if park.parkphoto.url %}
                 src="{{park.parkphoto.url}}" 
               {% else %}
-                src="{{park.url}}"
+                src="{{park.national_park.img_url}}"
               {% endif %}
               alt="a photo of {{park.get_name_display}}"
             >

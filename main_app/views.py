@@ -34,7 +34,6 @@ def get_parks(request):
   res = requests.get(endpoint,params=PARAMS)
   data = res.json()
 
-  # filter out everything that is not a national park
   only_parks = list(filter(lambda park: park.get('designation') == "National Park", data["data"]))
 
   for park in only_parks:
@@ -48,17 +47,8 @@ def get_parks(request):
       park_data.save()
   
   all_parks = NationalPark.objects.all()
-  favorites = Park.objects.filter(user=request.user)
-  return render(request,'parks/index_all_parks.html', {'national_parks': all_parks, 'park': favorites})
+  return render(request,'parks/index_all_parks.html', {'national_parks': all_parks})
 
-  # # create tupes of park code, park name and park code, park iage url
-  # parkNames, parkImages = ([] for i in range(2))
-  # for park in park_data:
-  #   parkNames.append((park['parkCode'], park['fullName']+', '+park['states']))
-  #   parkImages.append((park['parkCode'], park['images'][0]['url']))
-  # parkNames = tuple(parkNames)
-  # parkImages = tuple(parkImages)
-  # return parkNames, parkImages
 
 @login_required
 def park_index(request):
@@ -128,25 +118,9 @@ def add_park_photo(request, park_id):
       print('An error occurred uploading file to S3: %s' % err)
 
 
-# class ParkCreate(LoginRequiredMixin, CreateView):
-#   model = Park
-#   fields = ['name', 'state', 'year_visited', 'highlights']
-  
-#   def form_valid(self, form):
-#     form.instance.user = self.request.user
-#     new_park = form.save()
-#     add_park_photo(self.request, new_park.id)
-#     return super().form_valid(form)
-
 class ParkCreate(LoginRequiredMixin, CreateView):
   model = Park
   fields = ['name', 'year_visited', 'highlights']
-  # def get_form(self):
-  #   form = super().get_form()
-  #   parkNames, parkImages = get_parks()
-  #   print(parkImages)
-  #   form.fields['name'].choices = parkNames
-  #   return form
 
   def get_form(self):
     form = super().get_form()
@@ -157,9 +131,9 @@ class ParkCreate(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     form.instance.national_park = NationalPark.objects.get(id=self.kwargs['pk'])
-    new_park = form.save()
-    # new_park.url = [park_code[1] for park_code in PARK_IMAGES if new_park.name in park_code][0]
+    form.save()
     return super().form_valid(form)
+
 
 class ParkUpdate(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):
   model = Park

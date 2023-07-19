@@ -9,28 +9,35 @@
 {% block content %}
 
 <section class="page-header">
-  <h1>All National Parks</h1>
+  <h1>All National Parks {{user.id}}</h1>
 </section>
 
 <section class="card-container">
   {% for nps in national_parks %}
     <div class="card">
-      {% comment %} {% if park.code in favorites %} {% endcomment %}
-      {% comment %} <a href="{% url 'park-detail' nps.id %}"> {% endcomment %}
-      <a href="{% url 'park-create' nps.id %}">
-        <div class="card-content">
-          <div class="card-img-container">
-            <img
-              src="{{nps.img_url}}"
-              alt="a photo of {{nps.name}}"
-            >
-          </div>
+    
+    {%load index_favorite%}
+    {% with nps.park_set.all|index_favorite:user.id as park_id %}
+      {% if park_id %}
+        <a href="{% url 'park-detail' park_id %}">
+      {% else %}
+        <a href="{% url 'park-create' nps.id %}">  
+      {% endif %} 
+    {% endwith %}
 
-          <div class="card-text-container">
-            <h2 class="card-title">{{ nps.name }}</h2>
+          <div class="card-content">
+            <div class="card-img-container">
+              <img
+                src="{{nps.img_url}}"
+                alt="a photo of {{nps.name}}"
+              >
+            </div>
+
+            <div class="card-text-container">
+              <h2 class="card-title">{{ nps.name }}</h2>
+            </div>
           </div>
-        </div>
-      </a>
+        </a> 
     </div>
   {% endfor %}
 </section>
