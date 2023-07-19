@@ -1,7 +1,6 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .park_info import PARK_NAMES
 
 TYPES = (
   ('T', 'Trail'),
@@ -23,14 +22,9 @@ class NationalPark(models.Model):
     ordering = ['name']
 
 class Park(models.Model):
-  name = models.CharField(
-    max_length=100, 
-    choices=PARK_NAMES, 
-    default = PARK_NAMES[0][0]
-  )
+  name = models.CharField(max_length=100)
   year_visited = models.IntegerField('If visited, what year', blank = True, null = True)
   highlights = models.TextField(max_length = 250, blank = True, null = True)
-  url = models.CharField(max_length=250, blank = True, null = True)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   national_park = models.ForeignKey(NationalPark, on_delete=models.CASCADE)
 

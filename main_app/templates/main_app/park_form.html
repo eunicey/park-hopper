@@ -11,7 +11,7 @@
       {% if park.parkphoto.url %}
         background-image: url("{{park.parkphoto.url}}")
       {% else %}
-        background-image: url("{{park.url}}")
+        background-image: url("{{park.national_park.img_url}}")
       {% endif %}
     {% else %}
         background-image: url("{% static 'images/rocky-mountain-by-harold-wainwright.jpg' %}")
@@ -28,9 +28,9 @@
 
   <div class="page-header">
     {% if park %}
-      <h1>Edit {{park.get_name_display}}</h1>
+      <h1>Edit {{park.name}}</h1>
     {% else %}
-      <h1>Add a Park</h1>
+      <h1>Save to Favorites</h1>
     {% endif %}
   </div>
 

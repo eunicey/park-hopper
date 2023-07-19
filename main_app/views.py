@@ -15,7 +15,6 @@ import uuid
 import boto3
 import requests
 
-
 S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
 BUCKET = 'park-hopper-2023'
 
@@ -23,11 +22,10 @@ BUCKET = 'park-hopper-2023'
 class Home(LoginView):
   template_name = 'home.html'
 
-
 def about(request):
   return render(request, 'about.html')
 
-def park_index(request):
+def get_parks(request):
   endpoint = 'https://developer.nps.gov/api/v1/parks?q=%22National%20Park%22&limit=200'
   PARAMS = {'api_key':settings.NPS_API_KEY}
   res = requests.get(endpoint,params=PARAMS)
@@ -46,13 +44,14 @@ def park_index(request):
       park_data.save()
   
   all_parks = NationalPark.objects.all()
-  return render(request,'parks/index_all_parks.html', {'national_parks': all_parks})
+  return render(request,'index.html', {'nps_all': all_parks})
 
 
 @login_required
-def favorite_index(request):
+def park_index(request):
   parks = Park.objects.filter(user=request.user)
   return render(request, 'parks/index.html', { 'parks': parks })
+
 
 @login_required
 def park_detail(request, park_id):
@@ -69,7 +68,7 @@ def park_detail(request, park_id):
 
 
 @login_required
-def add_activity_photo(request, park_id, activity_id):
+def add_activity_photo(request, activity_id):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
     s3 = boto3.client('s3')
@@ -94,7 +93,7 @@ def add_activity(request, park_id):
     new_activity = form.save(commit=False)
     new_activity.park_id = park_id
     new_activity.save()
-    add_activity_photo(request, park_id=park_id, activity_id=new_activity.id)
+    add_activity_photo(request, activity_id=new_activity.id)
   return redirect('park-detail', park_id=park_id)
 
 
@@ -124,7 +123,8 @@ class ParkCreate(LoginRequiredMixin, CreateView):
   def get_form(self):
     form = super().get_form()
     park = NationalPark.objects.get(id=self.kwargs['pk'])
-    form.fields['name'].initial = park.code
+    form.fields['name'].initial = park.name
+    form.fields['name'].disabled = True
     return form
 
   def form_valid(self, form):
@@ -137,7 +137,7 @@ class ParkCreate(LoginRequiredMixin, CreateView):
 
 class ParkUpdate(LoginRequiredMixin, UserPassesTestMixin,  UpdateView):
   model = Park
-  fields = ['name', 'year_visited', 'highlights']
+  fields = ['year_visited', 'highlights']
 
   def form_valid(self, form):
     add_park_photo(self.request, self.kwargs['pk'])
@@ -164,7 +164,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('park-index')
+      return redirect('get-parks')
     else:
       error_message = 'Invalid sign up - try again'
 

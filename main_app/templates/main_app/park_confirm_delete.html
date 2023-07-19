@@ -9,7 +9,7 @@
     {% if park.parkphoto.url %}
       background-image: url("{{park.parkphoto.url}}")
     {% else %}
-      background-image: url("{{park.url}}")
+      background-image: url("{{park.national_park.img_url}}")
     {% endif %}
   }
 </style>
@@ -24,7 +24,7 @@
     <h1>Delete Park?</h1>
   </div>
 
-  <h2 class="delete-confirm-text">Are you sure you want to delete {{ park.get_name_display }}?</h2>
+  <h2 class="delete-confirm-text">Are you sure you want to delete {{ park.name }}?</h2>
 
   <form 
     action="" 

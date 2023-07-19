@@ -17,13 +17,13 @@
       {% else %}
         src="{{park.national_park.img_url}}"
       {% endif %}
-      alt="a photo of {{park.get_name_display}}"
+      alt="a photo of {{park.name}}"
     >
   </div>
 
   <div class="park-details">
     <div class="park-text">
-      <h1>{{park.get_name_display}}</h1>
+      <h1>{{park.name}}</h1>
       <p class="highlights">{{park.highlights}}</p>
 
       {% if park.year_visited %}

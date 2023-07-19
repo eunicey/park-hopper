@@ -29,7 +29,7 @@
               {% else %}
                 src="{{park.national_park.img_url}}"
               {% endif %}
-              alt="a photo of {{park.get_name_display}}"
+              alt="a photo of {{park.name}}"
             >
 
             {% if park.year_visited %}
@@ -40,7 +40,7 @@
           </div>
 
           <div class="card-text-container">
-            <h2 class="card-title">{{ park.get_name_display }}</h2>
+            <h2 class="card-title">{{ park.name }}</h2>
           </div>
         </div>
       </a>

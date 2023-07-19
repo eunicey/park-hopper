@@ -7,13 +7,12 @@
 
 
 {% block content %}
-
 <section class="page-header">
-  <h1>All National Parks {{user.id}}</h1>
+  <h1>All National Parks</h1>
 </section>
 
 <section class="card-container">
-  {% for nps in national_parks %}
+  {% for nps in nps_all %}
     <div class="card">
     
     {%load index_favorite%}
@@ -41,5 +40,4 @@
     </div>
   {% endfor %}
 </section>
-
 {% endblock %}
