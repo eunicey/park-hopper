@@ -5,7 +5,7 @@
 
 ## Intro
 Welcome to Park Hopper, an app to capture and plan your national park adventures. Park Hopper is for avid park enthusiasts seeking a platform to document the parks they've explored and the ones they want to visit. In this app, you can:
-- Search for a park within the National Park Services database
+- Search for a park within the National Park Services API database
 - Add/Edit/Delete national parks in your favorites list
 - Add photos and comments to any of your favorite parks
 <br />
@@ -17,7 +17,7 @@ Welcome to Park Hopper, an app to capture and plan your national park adventures
 <br />
 
 ## Attributions
-- National park photos by [Mattia Bericchia](https://unsplash.com/@mattiabericchia), [Alex Povolyashko](https://unsplash.com/@alex_povolyashko), [Harold Wainwright](https://unsplash.com/@haroldwainwright), [Joshua Earle](https://unsplash.com/@huper), [Mick Haupt](https://unsplash.com/@rocinante_11), and [Matthias Mullie](https://unsplash.com/@matthiasmullie)
+- National park photos by [Mattia Bericchia](https://unsplash.com/@mattiabericchia), [Alex Povolyashko](https://unsplash.com/@alex_povolyashko), [Harold Wainwright](https://unsplash.com/@haroldwainwright), and [Mick Haupt](https://unsplash.com/@rocinante_11)
 - Activity photos by [Elijah Austin](https://unsplash.com/@elijahjaustin), [Dino Reichmuth](https://unsplash.com/@dinoreichmuth), [Alex Azabache](https://unsplash.com/@alexazabache), and [Cristofer Maximilian](https://unsplash.com/@cristofer)
 - SVGs from [svgrepo](https://www.svgrepo.com/)
 <br />
